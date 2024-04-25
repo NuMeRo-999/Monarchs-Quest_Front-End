@@ -1,0 +1,44 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: 'DungeonFont';
+  src: url('assets/fonts/DungeonFont.ttf') format('truetype');
+}
+
+.font-pixel {
+  font-family: 'DungeonFont', sans-serif;
+}
+
+.font-pixelify {
+  font-family: 'Pixelify Sans', sans-serif;
+}
+
+@keyframes pan {
+  0% {
+    background-position: 0% 0%;
+  }
+  100% {
+    background-position: 100% 100%;
+  }
+}
+
+.bg-animation {
+  animation: pan 180s linear infinite;
+}
+
+.bg-gradient {
+  background: radial-gradient(#a8241e, #680b0b);
+}
+
+.bg-gradient-2 {
+  background: radial-gradient(circle, transparent 60%, #310d0d);
+  position: absolute;
+  left: 0px;
+  top: 0px;
+  width: 100%;
+  height: 100%;
+  opacity: 0.9;
+  z-index: 2;
+}
