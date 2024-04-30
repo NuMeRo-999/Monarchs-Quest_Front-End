@@ -12,12 +12,13 @@ const HomePage = () => {
               src="src/assets/images/MonarchQuest.png"
               alt=""
             />
-            <button
+            <Link
+              to={"/saves"}
               type="submit"
-              className="rounded-full leading-4 text-2xl bg-red-800 h-8 mt-5 text-white w-52"
+              className="rounded-full leading-4 text-2xl bg-red-800 h-8 mt-5 text-white w-52 text-center pt-2"
             >
               Jugar
-            </button>
+            </Link>
             <Link
               to={"/login"}
               className="rounded-full leading-4 text-2xl bg-red-800 h-8 mt-5 text-white w-52 text-center pt-2"

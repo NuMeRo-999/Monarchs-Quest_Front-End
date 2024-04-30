@@ -1,11 +1,12 @@
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
-import RootPage from "./pages/RootPage";
 import ErrorPage from "./pages/ErrorPage";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import { useState } from "react";
 import RegisterPage from "./pages/RegisterPage";
+import GamePage from "./pages/GamePage";
+import SavesPage from "./pages/SavesPage";
 
 function App() {
 
@@ -14,7 +15,6 @@ function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <RootPage />,
       errorElement: <ErrorPage />,
       children: [
         {
@@ -23,6 +23,14 @@ function App() {
             {
               index: true,
               element: <HomePage />,
+            },
+            {
+              path: "/saves",
+              element: <SavesPage />,
+            },
+            {
+              path: "/game",
+              element: <GamePage />,
             },
           ],
         },
