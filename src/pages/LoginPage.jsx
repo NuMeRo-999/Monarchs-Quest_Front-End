@@ -46,7 +46,7 @@ const LoginPage = () => {
         <div className="bg-auto font-pixel size-screen bg-gradient">
             <div className=" bg-[url('src/assets/images/background.png')] bg-[length:150px_150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
                 <div className="bg-gradient-2"></div>
-                <div className="bg-[url('src/assets/images/home.png')] bg-auto bg-center shadow-2xl h-[90%] w-[90%] flex flex-col items-center justify-center p-44">
+                <div className="bg-[url('src/assets/images/home.png')] bg-cover h-4/5 w-1/2 flex flex-col justify-center z-10 p-48">
                 <img className="size-96" src="src/assets/images/MonarchQuest.png" alt="" />
                     {error ?(<div>{error}</div>):('')}
                     <form className="max-w-sm mx-auto w-full z-10" onSubmit={handleSubmit}>
