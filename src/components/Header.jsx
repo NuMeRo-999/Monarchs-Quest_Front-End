@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import { getUserSaveSlots } from "../api/apiRequest";
-import BackButton from "./BackButton";
 import { Link } from "react-router-dom";
 
 const Header = ({gameId}) => {
