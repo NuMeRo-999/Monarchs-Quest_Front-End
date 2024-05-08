@@ -24,6 +24,10 @@
   }
 }
 
+.image-cursor {
+  cursor: url('/src/assets/icons/hand-cursor.png'), auto;
+}
+
 .bg-animation {
   animation: pan 180s linear infinite;
 }

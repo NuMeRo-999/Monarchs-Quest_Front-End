@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
+import BackButton from "../components/BackButton";
 
 const HomePage = () => {
   return (
     <div className="bg-auto font-pixel size-screen bg-gradient ">
+      <BackButton />
       <div className=" bg-[url('src/assets/images/background.png')] bg-[length:150px_150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
         <div className="bg-gradient-2"></div>
         <div className="bg-[url('src/assets/images/home.png')] bg-cover h-4/5 w-1/2 flex flex-col justify-center z-10">
@@ -12,19 +14,22 @@ const HomePage = () => {
               src="src/assets/images/MonarchQuest.png"
               alt=""
             />
-            <Link
-              to={"/saves"}
-              type="submit"
-              className="rounded-full leading-4 text-2xl bg-red-800 h-8 mt-5 text-white w-52 text-center pt-2"
-            >
-              Jugar
-            </Link>
-            <Link
-              to={"/login"}
-              className="rounded-full leading-4 text-2xl bg-red-800 h-8 mt-5 text-white w-52 text-center pt-2"
-            >
-              Salir
-            </Link>
+
+            <div className="flex flex-col items-center gap-5 mt-7">
+              <Link
+                to={"/saves"}
+                type="submit"
+                className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover leading-4 text-2xl h-[2.55rem] text-white w-52 flex justify-center items-center"
+              >
+                Jugar
+              </Link>
+              <Link
+                to={"/login"}
+                className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover leading-4 text-2xl h-[2.55rem] text-white w-52 flex justify-center items-center"
+              >
+                Salir
+              </Link>
+            </div>
           </div>
 
           <div>
@@ -32,14 +37,22 @@ const HomePage = () => {
               <h2 className="text-3xl font-bold ">Créditos</h2>
               <p className="text-lg">Desarrollado por Pedro Vílchez</p>
               <div className="flex gap-5 justify-center items-center">
-                <a href="https://github.com/NuMeRo-999" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://github.com/NuMeRo-999"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     className="size-10"
                     src="src/assets/images/github-icon.png"
                     alt=""
                   />
                 </a>
-                <a href="https://www.linkedin.com/in/pedro-vílchez-peña-4669292b0/" target="_blank" rel="noopener noreferrer">
+                <a
+                  href="https://www.linkedin.com/in/pedro-vílchez-peña-4669292b0/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
                   <img
                     className="size-10"
                     src="src/assets/images/linkedin-icon.png"
