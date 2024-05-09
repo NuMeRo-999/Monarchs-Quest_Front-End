@@ -7,11 +7,13 @@ import Loading from "../components/Loading";
 
 const SavesPage = () => {
   const [saves, setSaves] = useState([]);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getUserSaveSlots()
       .then((data) => {
         setSaves(data);
+        setLoading(false);
       })
       .catch((error) => {
         console.error("Error:", error);
@@ -25,7 +27,7 @@ const SavesPage = () => {
       <BackButton/>
       <div className=" bg-[url('src/assets/images/background.png')] bg-[length:150px] bg-animation h-screen w-screen flex justify-center items-center gap-10">
         <div className="bg-gradient-2"></div>
-          {saves.length === 0 ? (
+          { loading ? (
             <Loading/>
           ) : (
             [...Array(3)].map((_, index) => {
