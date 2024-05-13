@@ -19,17 +19,17 @@ const Header = ({ saveSlotId }) => {
     <div className="flex items-center justify-around bg-[url('/src/assets/images/header-border.png')] bg-cover pb-[1.6rem]">
       <div className="p-2 pl-5 font-pixelify flex items-center justify-evenly gap-10">
         <div className="flex items-center gap-2">
-          <img src="/src/assets/icons/door-icon.png" alt="" className="size-10"/>
+          <img src="/src/assets/icons/door-icon.png" alt="stage" className="size-8"/>
           <p className="text-2xl text-white">{saves && Array.isArray(saves.stage) && saves.stage.length > 0 && saves.stage[0].stage}</p>
         </div>
 
         <div className="flex items-center gap-2">
-          <img src="/src/assets/images/coin_05d.png" alt="" />
+          <img src="/src/assets/images/coin_05d.png" alt="money" />
           <p className="text-2xl text-white">{saves && typeof saves.money === 'number' ? saves.money : 'N/A'}</p>
         </div>
 
         <div className="flex items-center gap-2">
-          <img src="/src/assets/images/skull_01a.png" alt="" />
+          <img src="/src/assets/images/skull_01a.png" alt="kills" />
           <p className="text-2xl text-white">{saves && typeof saves.kills === 'number' ? saves.kills : 'N/A'}</p>
         </div>
       </div>

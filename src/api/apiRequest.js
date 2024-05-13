@@ -59,3 +59,25 @@ export async function getSaveSlot(saveSlotId) {
     throw error;
   }
 }
+
+export async function getWeaponsEquiped() {
+  try {
+
+    return await getWithAuth(`/item/equiped_weapons`);
+
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
+
+export async function getAmuletEquiped() {
+  try {
+
+    return await getWithAuth(`/item/equiped_amulet`);
+
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}
