@@ -8,11 +8,11 @@ const GamePage = () => {
 
   return (
     <>
-      <Header gameId={gameId}/>
+      <Header saveSlotId={gameId}/>
       <div className="bg-[url(/src/assets/images/game-background.png)] bg-cover h-[57.5vh]">
         {/* <img src="/src/assets/images/game-background.png" alt="" className="w-full h-auto"/> */}
       </div>
-      <Footer/>
+      <Footer saveSlotId={gameId}/>
     </>
   )
 }

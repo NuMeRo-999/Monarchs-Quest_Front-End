@@ -7,6 +7,7 @@ import { useState } from "react";
 import RegisterPage from "./pages/RegisterPage";
 import GamePage from "./pages/GamePage";
 import SavesPage from "./pages/SavesPage";
+import RankingPage from "./pages/RankingPage";
 
 function App() {
   document.body.style.cursor = "url('/src/assets/icons/sword_02b.png'), auto";
@@ -28,6 +29,10 @@ function App() {
             {
               path: "/saves",
               element: <SavesPage />,
+            },
+            {
+              path: "/ranking",
+              element: <RankingPage />,
             },
             {
               path: "/game/:gameId",

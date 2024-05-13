@@ -1,10 +1,8 @@
 import { Link } from "react-router-dom";
-import BackButton from "../components/BackButton";
 
 const HomePage = () => {
   return (
     <div className="bg-auto font-pixel size-screen bg-gradient ">
-      <BackButton />
       <div className=" bg-[url('src/assets/images/background.png')] bg-[length:150px_150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
         <div className="bg-gradient-2"></div>
         <div className="bg-[url('src/assets/images/home.png')] bg-cover h-4/5 w-1/2 flex flex-col justify-center z-10">
@@ -22,6 +20,13 @@ const HomePage = () => {
                 className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover leading-4 text-2xl h-[2.55rem] text-white w-52 flex justify-center items-center"
               >
                 Jugar
+              </Link>
+              <Link
+                to={"/ranking"}
+                type="submit"
+                className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover leading-4 text-2xl h-[2.55rem] text-white w-52 flex justify-center items-center"
+              >
+                Ranking
               </Link>
               <Link
                 to={"/login"}

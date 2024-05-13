@@ -1,6 +1,6 @@
 import { getWithAuth } from "./api";
 
-const BASE_URL = "http://127.0.0.1:8000";
+export const BASE_URL = "http://127.0.0.1:8000";
 
 export async function login(url, userData) {
   try {
@@ -33,8 +33,6 @@ export async function login(url, userData) {
   }
 }
 
-
-
 export async function getUserSaveSlots() {
   try {
     const user = JSON.parse(localStorage.getItem("user"));
@@ -49,4 +47,15 @@ export async function getUserSaveSlots() {
     throw error;
   }
   
+}
+
+export async function getSaveSlot(saveSlotId) {
+  try {
+
+    return await getWithAuth(`/save/slot/${saveSlotId}`)
+
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
 }
