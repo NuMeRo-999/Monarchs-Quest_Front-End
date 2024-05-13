@@ -1,7 +1,7 @@
-import React from "react";
+import { useState } from "react";
 
 export default function ErrorModal() {
-  const [showModal, setShowModal] = React.useState(false);
+  const [showModal, setShowModal] = useState(false)
 
   return (
     <>

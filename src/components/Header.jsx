@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { getSaveSlot } from "../api/apiRequest";
 import { Link } from "react-router-dom";
+import InventoryModal from "./InventoryModal";
 
 const Header = ({ saveSlotId }) => {
   const [saves, setSaves] = useState([]);
@@ -38,9 +39,7 @@ const Header = ({ saveSlotId }) => {
         <button className="image-cursor leading-4 text-2xl bg-[url('/src/assets/images/button.png')] bg-cover h-10 text-white w-52 text-center pt-2 font-bold py-2 px-4">
           Estadisticas
         </button>
-        <button className="image-cursor leading-4 text-2xl bg-[url('/src/assets/images/button.png')] bg-cover h-10 text-white w-52 text-center pt-2 font-bold py-2 px-4">
-          Inventario
-        </button>
+        <InventoryModal/>
         <Link
           to="/saves"
           className="flex justify-center items-center image-cursor leading-4 text-2xl bg-[url('/src/assets/images/button.png')] bg-cover h-10 text-white w-52 text-center font-bold"
