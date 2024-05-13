@@ -14,8 +14,6 @@ const AmuletoSection = () => {
       });
   }, []);
 
-  console.log(amulet[0]);
-
   return (
     <>
       <div>

@@ -14,8 +14,6 @@ const WeaponsSection = () => {
       });
   }, []);
 
-  console.log(weapons[0])
-
   return (
     <div className="flex justify-center items-center gap-4">
       {[...Array(2)].map((_, index) => {
