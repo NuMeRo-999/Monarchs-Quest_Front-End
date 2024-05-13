@@ -34,7 +34,7 @@ const SavesPage = () => {
                 <div key={save?.id} className="bg-[url('src/assets/images/save-slot.png')] bg-cover w-96 h-[33rem] flex flex-col justify-center z-10 p-20 text-3xl">
                   <div className="flex flex-col justify-center items-center gap-2">
                     {save ? (
-                      <SaveCard save={save} index={save?.id}/>
+                      <SaveCard save={save} saveId={save?.id} index={index}/>
                     ) : (
                       <EmptySaveCard/>
                     )}

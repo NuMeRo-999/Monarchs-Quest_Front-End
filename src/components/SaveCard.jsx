@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
-const SaveCard = ({save, index}) => {
+const SaveCard = ({save, index, saveId}) => {
+  console.log(save.stage[0].stage);
   return (
     <>
       <div>
@@ -30,13 +31,13 @@ const SaveCard = ({save, index}) => {
       </div>
       <div className="flex flex-col items-center justify-center gap-2">
         <Link
-          to={`/game/${index}`}
+          to={`/game/${saveId}`}
           className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover h-12 w-[15.3rem] flex justify-center items-center text-white font-bold py-2 px-4 rounded"
         >
           Jugar
         </Link>
         <Link
-          to={`/game/${index}`}
+          to={`/game/${saveId}`}
           className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover h-12 w-[15.3rem] flex justify-center items-center text-white font-bold py-2 px-4 rounded"
         >
           Borrar
