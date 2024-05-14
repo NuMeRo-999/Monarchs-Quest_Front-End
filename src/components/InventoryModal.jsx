@@ -57,7 +57,7 @@ const InventoryModal = () => {
                       className="bg-[url('/src/assets/images/inventory-slot-1.png')] bg-cover size-20 flex justify-center items-center relative"
                     >
                       <ContextMenu inventory={inventory} index={index}/>
-                      <p className="text-white absolute bottom-0 right-1 text-xl font-m04">
+                      <p className="text-white absolute bottom-2 right-2 text-xl font-m04">
                         {inventory[index]?.quantity}
                       </p>
                     </div>

@@ -1,19 +1,7 @@
-import { useEffect, useState } from "react";
-import { BASE_URL, getWeaponsEquiped } from "../api/apiRequest";
+import { BASE_URL } from "../api/apiRequest";
 
-const WeaponsSection = () => {
-  const [weapons, setWeapons] = useState([]);
-
-  useEffect(() => {
-    getWeaponsEquiped()
-      .then((data) => {
-        setWeapons(data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }, []);
-
+const WeaponsSection = ({weapons}) => {
+  
   return (
     <div className="flex justify-center items-center gap-4">
       {[...Array(2)].map((_, index) => {

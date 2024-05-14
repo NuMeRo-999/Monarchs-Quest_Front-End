@@ -118,3 +118,47 @@
 /*   87.5% { transform: rotate(315deg); } */
   100% { transform: rotate(360deg); }
 }
+
+/* Animaciones */
+
+@keyframes animateHeroeIdle {
+  from {
+    background-position: 0px 0px;
+  }
+  to {
+    background-position: -1167px 0px;
+  }
+}
+
+@keyframes animateEnemyIdle {
+  from {
+    background-position: 0px 1344px;
+  }
+  to {
+    background-position: 0px 768px ;
+  }
+}
+
+.heroe-idle {
+  animation: animateHeroeIdle 1.1s steps(4) infinite;
+}
+
+.enemy-idle {
+  animation: animateEnemyIdle 1.1s steps(4) infinite;
+}
+
+@keyframes animateItem {
+  0% {
+    transform: translateY(10px);
+  }
+  50% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(10px);
+  }
+}
+
+.item-animation {
+  animation: animateItem 1.1s infinite;
+}

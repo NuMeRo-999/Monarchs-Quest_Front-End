@@ -8,7 +8,11 @@ const PlayerSection = ({heroe}) => {
               <img src="/src/assets/icons/level-icon.png" alt="" /> Lvl {heroe.level}
             </div>
             <div className="bg-[url('/src/assets/images/inventory-slot-1.png')] bg-cover p-2 flex justify-center items-center">
-              <img src={`${BASE_URL}/img/${heroe.imageFilename}`} alt="" className="size-12 object-left-top"/>
+              <div alt="" className=" bg-[length:800px_300px] bg-no-repeat bg-left-top p-8"
+              style={{ backgroundImage: `url('${BASE_URL}/img/${heroe?.imageFilename}')`,
+              backgroundPosition: "-35px 0px"
+               }}>
+              </div>
             </div>
           </div>
           <div className="space-y-1">
@@ -30,7 +34,7 @@ const PlayerSection = ({heroe}) => {
             </div>
           </div>
         </div>
-  )
+  );
 }
 
-export default PlayerSection
+export default PlayerSection;

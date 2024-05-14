@@ -32,7 +32,14 @@ const ContextMenu = ({ inventory, index }) => {
         <img
           src={`${BASE_URL}/img/${inventory[index]?.image}`}
           alt=""
-          className="size-10 image-cursor rounded"
+          className={` image-cursor rounded ${
+            inventory[index]?.image.includes('sword') ||
+            inventory[index]?.image.includes('dagger') ||
+            inventory[index]?.image.includes('hammer') ||
+            inventory[index]?.image.includes('spear')
+              ? 'w-4 h-15 rotate-45'
+              : 'size-10'
+          }`}
           onContextMenu={(e) => handleContextMenu(e, index)}
         />
       ) : (

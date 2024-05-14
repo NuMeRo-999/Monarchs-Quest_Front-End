@@ -3,7 +3,7 @@ import PlayerSection from "./PlayerSection";
 import WeaponsSection from "./WeaponsSection";
 import AmuletoSection from "./AmuletoSection";
 
-const Footer = ({ abilities, heroe }) => {
+const Footer = ({ abilities, heroe, weapons }) => {
   
 
   return (
@@ -15,7 +15,7 @@ const Footer = ({ abilities, heroe }) => {
 
       <div className="flex flex-col space-y-2">
         <div className="text-center font-bold uppercase">Armas</div>
-        <WeaponsSection/>
+        <WeaponsSection weapons={weapons}/>
       </div>
 
       <div className="flex flex-col space-y-2">
