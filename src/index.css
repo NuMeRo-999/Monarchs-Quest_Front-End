@@ -7,12 +7,21 @@
   src: url('assets/fonts/DungeonFont.ttf') format('truetype');
 }
 
+@font-face {
+  font-family: 'm04';
+  src: url('assets/fonts/m04.TTF') format('truetype');
+}
+
 .font-pixel {
   font-family: 'DungeonFont', sans-serif;
 }
 
 .font-pixelify {
   font-family: 'Pixelify Sans', sans-serif;
+}
+
+.font-m04 {
+  font-family: 'm04', sans-serif;
 }
 
 @keyframes pan {
