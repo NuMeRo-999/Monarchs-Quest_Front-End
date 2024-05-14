@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { BASE_URL } from "../api/apiRequest";
+import ItemDetail from "./ItemDetail";
 
 const ContextMenu = ({ inventory, index }) => {
   const [contextMenu, setContextMenu] = useState(null);
@@ -8,7 +9,7 @@ const ContextMenu = ({ inventory, index }) => {
     e.preventDefault();
     setContextMenu({
       index: index,
-      position: { top: e.clientY - 100, left: e.clientX - 120 },
+      position: { top: e.clientY - 180, left: e.clientX - 420 },
     });
   }
 
@@ -52,6 +53,7 @@ const ContextMenu = ({ inventory, index }) => {
             <button
               onClick={() => setContextMenu(null)}
               className="image-cursor hover:bg-[#382f35] size-full rounded-t-lg border-b border-gray-400"
+              id={inventory[index]?.id}
             >
               Consumir
             </button>
@@ -59,6 +61,7 @@ const ContextMenu = ({ inventory, index }) => {
             <button
               onClick={() => setContextMenu(null)}
               className="image-cursor hover:bg-[#382f35] size-full rounded-t-lg border-b border-gray-400"
+              id={inventory[index]?.id}
             >
               Desequipar
             </button>
@@ -66,19 +69,16 @@ const ContextMenu = ({ inventory, index }) => {
             <button
               onClick={() => setContextMenu(null)}
               className="image-cursor hover:bg-[#382f35] size-full rounded-t-lg border-b border-gray-400"
+              id={inventory[index]?.id}
             >
               Equipar
             </button>
           )}
-          <button
-            onClick={() => setContextMenu(null)}
-            className="image-cursor hover:bg-[#382f35] size-full border-b border-gray-400"
-          >
-            Detalles
-          </button>
+          <ItemDetail inventory={inventory} index={index} setContextMenu={setContextMenu} />
           <button
             onClick={() => setContextMenu(null)}
             className="image-cursor hover:bg-[#382f35] size-full rounded-b-lg"
+            id={inventory[index]?.id}
           >
             Eliminar
           </button>
