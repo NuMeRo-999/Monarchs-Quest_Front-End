@@ -123,7 +123,7 @@
 
 @keyframes animateHeroeIdle {
   from {
-    background-position: 0px 0px;
+    background-position: top left;
   }
   to {
     background-position: -1167px 0px;
@@ -132,11 +132,11 @@
 
 @keyframes animateEnemyIdle {
   from {
-    background-position: 0px 1344px;
+    background-position: top right;
   }
   to {
-    background-position: 0px 768px ;
-  }
+    background-position: top right -768px;
+    }
 }
 
 .heroe-idle {
