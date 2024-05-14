@@ -48,7 +48,7 @@ const InventoryModal = () => {
             <CloseModalButton setShowModal={setShowModal}/>
               <div className="bg-[url('/src/assets/images/Inventory.png')] bg-cover w-[80vw] h-[77.7vh] grid grid-cols-10 p-20 z-20 text-3xl justify-center">
                 {loading ? (
-                  <Spinner />
+                    <Spinner/>
                 ) : inventory.length > 0 ? (
                   [...Array(40)].map((_, index) => (
                     <div

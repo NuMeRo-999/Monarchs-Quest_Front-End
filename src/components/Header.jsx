@@ -1,5 +1,3 @@
-import { useEffect, useState } from "react";
-import { getSaveSlot } from "../api/apiRequest";
 import { Link } from "react-router-dom";
 import InventoryModal from "./InventoryModal";
 
