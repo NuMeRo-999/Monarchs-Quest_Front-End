@@ -31,6 +31,8 @@ const ItemDetail = ({ inventory, index }) => {
     }
   }
 
+  console.log(ItemDetail);
+
   return (
     <>
       <button
@@ -58,24 +60,48 @@ const ItemDetail = ({ inventory, index }) => {
                     {ItemDetail?.description}
                   </p>
                   <div className="text-2xl flex flex-col items-center justify-center gap-5">
-                    <div className="flex gap-2">
-                      <img
-                        src="/src/assets/icons/attack-icon.png"
-                        alt=""
-                      />
-                      <p>Daño: {ItemDetail?.attackPower}</p>
+                    <div className="flex justify-between gap-8">
+                      <div className="flex items-center gap-2">
+                        <img
+                          src="/src/assets/icons/heart-icon.png"
+                          alt=""
+                          className="size-max"
+                        />
+                        <p>Vida: {ItemDetail?.healthPoints}</p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <img
+                          src="/src/assets/icons/max-health-icon.png"
+                          alt=""
+                          className="size-max"
+                        />
+                        <p>Vida Máx: {ItemDetail?.maxHealthPoints}</p>
+                      </div>
                     </div>
-                    <div className="flex gap-2">
-                      <img
-                        src="/src/assets/icons/critick-icon-2.png"
-                        alt=""
-                      />
-                      <p>
-                        Crítico: {ItemDetail?.criticalStrikeChance}
-                      </p>
+                    <div className="flex justify-between gap-8">
+                      <div className="flex items-center gap-2">
+                        <img
+                          src="/src/assets/icons/attack-icon.png"
+                          alt=""
+                          className="size-max"
+                        />
+                        <p>Daño: {ItemDetail?.attackPower}</p>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <img
+                          src="/src/assets/icons/critick-icon-2.png"
+                          alt=""
+                          className="size-max"
+                        />
+                        <p>Crítico: {ItemDetail?.criticalStrikeChance}</p>
+                      </div>
                     </div>
-                    <div className="flex gap-2">
-                      <img src="/src/assets/icons/shield-icon.png" alt="" />
+                    <div className="flex items-center gap-2">
+                      <img
+                        src="/src/assets/icons/shield-icon.png"
+                        alt=""
+                        className="size-max"
+                      />
                       <p>Defensa: {ItemDetail?.defense}</p>
                     </div>
                   </div>
