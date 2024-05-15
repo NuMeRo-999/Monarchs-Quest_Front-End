@@ -1,18 +1,6 @@
-import { useEffect, useState } from "react";
-import { BASE_URL, getAmuletEquiped } from "../api/apiRequest";
+import { BASE_URL } from "../api/apiRequest";
 
-const AmuletoSection = () => {
-  const [amulet, setAmulet] = useState([]);
-
-  useEffect(() => {
-    getAmuletEquiped()
-      .then((data) => {
-        setAmulet(data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }, []);
+const AmuletoSection = ({ amulet }) => {
 
   return (
     <>
