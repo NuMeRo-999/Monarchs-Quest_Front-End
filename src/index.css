@@ -126,7 +126,19 @@
     background-position: top left;
   }
   to {
-    background-position: -1167px 0px;
+    background-position: -1040px 0px;
+  }
+}
+
+@keyframes animateHeroAttack {
+  0% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(600px);
+  }
+  100% {
+    transform: translateX(0px);
   }
 }
 
@@ -139,12 +151,29 @@
     }
 }
 
+@keyframes animateEnemyDie {
+  from {
+    background-position: bottom right;
+  }
+  to {
+    background-position: bottom right -1152px;
+  }
+}
+
 .heroe-idle {
   animation: animateHeroeIdle 1.1s steps(4) infinite;
 }
 
+.heroe-attack {
+  animation: animateHeroAttack 1s 1;
+}
+
 .enemy-idle {
   animation: animateEnemyIdle 1.1s steps(4) infinite;
+}
+
+.enemy-die {
+  animation: animateEnemyDie 1.1s steps(6) 1;
 }
 
 @keyframes animateItem {

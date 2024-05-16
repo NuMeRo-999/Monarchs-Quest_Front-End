@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { BASE_URL } from "../api/apiRequest";
 
-const AbilitiesSection = ({ abilities, setSelectedSkill }) => {
+const AbilitiesSection = ({ abilities, setSelectedSkill, selectedSkill }) => {
   const [selectedAbility, setSelectedAbility] = useState(null);
 
   function handleSelectedSkill(skillId) {
@@ -21,8 +21,8 @@ const AbilitiesSection = ({ abilities, setSelectedSkill }) => {
               <img
                 src={`${BASE_URL}/img/${abilities[index]?.imageFilename}`}
                 alt=""
-                className={`size-10 image-cursor rounded hover:border-2 border-white box-border hover:scale-105 transition-transform duration-300 ease-in-out ${
-                  selectedAbility === abilities[index]?.id ? "border-2 border-white" : ""
+                className={`size-10 image-cursor rounded-md border-white box-border hover:scale-105 transition-transform duration-300 ease-in-out ${
+                  selectedSkill && selectedAbility === abilities[index]?.id ? "border-2 " : ""
                 }`}
                 onClick={() => handleSelectedSkill(abilities[index]?.id)}
               />
