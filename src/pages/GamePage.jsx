@@ -39,22 +39,24 @@ const GamePage = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [ ]);
 
   useEffect(() => {
     const attackHeroe = async () => {
       if (selectedSkill && selectedEnemy) {
         try {
           setIsAttacking(true);
-          console.log(isAttacking);
-          await getWithAuth(`/heroe/attack/${heroe.id}/${selectedEnemy}/${selectedSkill}`);
+          console.log(enemies);
+          await getWithAuth(`/heroe/attack/${heroe.id}/${selectedEnemy}/${selectedSkill}`)
+          .then((response) => {
+            setEnemies(response.enemies);
+          })
         } catch (error) {
           console.error("Error:", error);
         } finally {
           setSelectedSkill(null);
           setSelectedEnemy(null);
           setIsAttacking(false);
-          console.log(isAttacking);
         }
       }
     };
