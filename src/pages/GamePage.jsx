@@ -19,7 +19,7 @@ const GamePage = () => {
   const [heroe, setHeroe] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [selectedSkill, setSelectedSkill] = useState(null);
+  const [selectedSkill, setSelectedSkill] = useState([]);
   const [selectedEnemy, setSelectedEnemy] = useState(null);
   const [isAttacking, setIsAttacking] = useState(false)
 
@@ -46,8 +46,7 @@ const GamePage = () => {
       if (selectedSkill && selectedEnemy) {
         try {
           setIsAttacking(true);
-          console.log(enemies);
-          await getWithAuth(`/heroe/attack/${heroe.id}/${selectedEnemy}/${selectedSkill}`)
+          await getWithAuth(`/heroe/attack/${heroe.id}/${selectedEnemy}/${selectedSkill.id}`)
           .then((response) => {
             setEnemies(response.enemies);
           })
@@ -61,7 +60,25 @@ const GamePage = () => {
       }
     };
 
-    attackHeroe();
+    const buffHeroe = async () => {
+      if (selectedSkill && !selectedEnemy && selectedSkill.type === "Buff") {
+        try {
+          // setIsAttacking(true);
+          await getWithAuth(`/heroe/buff/${heroe.id}/${selectedSkill.id}`)
+          .then((response) => {
+            setHeroe(response);
+          })
+        } catch (error) {
+          console.error("Error:", error);
+        } finally {
+          setSelectedSkill(null);
+          setIsAttacking(false);
+        }
+      }
+    }
+
+      attackHeroe();
+      buffHeroe();
   }, [selectedSkill, selectedEnemy]);
 
   return (
@@ -81,7 +98,7 @@ const GamePage = () => {
           <Header saves={saves} />
           <div className="bg-[url(/src/assets/images/game-background.png)] bg-cover h-[57.5vh]">
             <Heroe heroe={heroe} weapons={weapons} isAttacking={isAttacking}/>
-            <Enemies enemies={enemies} setSelectedEnemy={setSelectedEnemy}/>
+            <Enemies enemies={enemies} selectedEnemy={selectedEnemy} setSelectedEnemy={setSelectedEnemy} isAttacking={isAttacking}/>
           </div>
           <Footer abilities={abilities} heroe={heroe} weapons={weapons} amulet={amulet} setSelectedSkill={setSelectedSkill} selectedSkill={selectedSkill}/>
         </>

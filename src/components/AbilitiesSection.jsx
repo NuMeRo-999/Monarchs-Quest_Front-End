@@ -4,9 +4,9 @@ import { BASE_URL } from "../api/apiRequest";
 const AbilitiesSection = ({ abilities, setSelectedSkill, selectedSkill }) => {
   const [selectedAbility, setSelectedAbility] = useState(null);
 
-  function handleSelectedSkill(skillId) {
-    setSelectedSkill(skillId);
-    setSelectedAbility(skillId);
+  function handleSelectedSkill(skill) {
+    setSelectedSkill(skill);
+    setSelectedAbility(skill);
   }
 
   return (
@@ -24,7 +24,7 @@ const AbilitiesSection = ({ abilities, setSelectedSkill, selectedSkill }) => {
                 className={`size-10 image-cursor rounded-md border-white box-border hover:scale-105 transition-transform duration-300 ease-in-out ${
                   selectedSkill && selectedAbility === abilities[index]?.id ? "border-2 " : ""
                 }`}
-                onClick={() => handleSelectedSkill(abilities[index]?.id)}
+                onClick={() => handleSelectedSkill(abilities[index])}
               />
             ) : (
               ""
