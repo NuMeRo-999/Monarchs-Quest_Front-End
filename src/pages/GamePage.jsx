@@ -2,7 +2,11 @@ import { useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
 import { useEffect, useState } from "react";
-import { getAmuletEquiped, getSaveSlot, getWeaponsEquiped } from "../api/apiRequest";
+import {
+  getAmuletEquiped,
+  getSaveSlot,
+  getWeaponsEquiped,
+} from "../api/apiRequest";
 import Loading from "../components/Loading";
 import Heroe from "../components/Heroe";
 import Enemies from "../components/Enemies";
@@ -21,7 +25,7 @@ const GamePage = () => {
 
   const [selectedSkill, setSelectedSkill] = useState([]);
   const [selectedEnemy, setSelectedEnemy] = useState(null);
-  const [isAttacking, setIsAttacking] = useState(false)
+  const [isAttacking, setIsAttacking] = useState(false);
 
   useEffect(() => {
     Promise.all([getSaveSlot(gameId), getWeaponsEquiped(), getAmuletEquiped()])
@@ -39,17 +43,19 @@ const GamePage = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, [ ]);
+  }, []);
 
   useEffect(() => {
     const attackHeroe = async () => {
       if (selectedSkill && selectedEnemy) {
         try {
           setIsAttacking(true);
-          await getWithAuth(`/heroe/attack/${heroe.id}/${selectedEnemy}/${selectedSkill.id}`)
-          .then((response) => {
+          await getWithAuth(
+            `/heroe/attack/${heroe.id}/${selectedEnemy}/${selectedSkill.id}`
+          ).then((response) => {
             setEnemies(response.enemies);
-          })
+            setSaves(response.saveSlot);
+          });
         } catch (error) {
           console.error("Error:", error);
         } finally {
@@ -64,10 +70,12 @@ const GamePage = () => {
       if (selectedSkill && !selectedEnemy && selectedSkill.type === "Buff") {
         try {
           // setIsAttacking(true);
-          await getWithAuth(`/heroe/buff/${heroe.id}/${selectedSkill.id}`)
-          .then((response) => {
-            setHeroe(response);
-          })
+          await getWithAuth(`/heroe/buff/${heroe.id}/${selectedSkill.id}`).then(
+            (response) => {
+              setHeroe(response.heroe);
+              setSaves(response.saveSlot);
+            }
+          );
         } catch (error) {
           console.error("Error:", error);
         } finally {
@@ -75,12 +83,32 @@ const GamePage = () => {
           setIsAttacking(false);
         }
       }
-    }
+    };
 
-      attackHeroe();
-      buffHeroe();
+    const enemyAttack = async () => {
+      if (saves.stage[0].state === 2) {
+        enemies.filter(enemy => enemy.state === 1).forEach(async enemy => {
+          try {
+            setIsAttacking(true);
+            await getWithAuth(`/enemy/attack/${heroe.id}/${enemy.id}`).then((response) => {
+              setHeroe(response.heroe);
+              setSaves(response.saveSlot);
+            });
+          } catch (error) {
+            console.error("Error:", error);
+          } finally {
+            setIsAttacking(false);
+          }
+        });
+      }
+    };
+
+    enemyAttack();
+    attackHeroe();
+    buffHeroe();
   }, [selectedSkill, selectedEnemy]);
 
+  console.log(saves?.stage)
   return (
     <>
       {loading ? (
@@ -97,10 +125,23 @@ const GamePage = () => {
         <>
           <Header saves={saves} />
           <div className="bg-[url(/src/assets/images/game-background.png)] bg-cover h-[57.5vh]">
-            <Heroe heroe={heroe} weapons={weapons} isAttacking={isAttacking}/>
-            <Enemies enemies={enemies} selectedEnemy={selectedEnemy} setSelectedEnemy={setSelectedEnemy} isAttacking={isAttacking}/>
+            <Heroe heroe={heroe} weapons={weapons} isAttacking={isAttacking} stageId={saves?.stage[0].state} />
+            <Enemies
+              enemies={enemies}
+              selectedEnemy={selectedEnemy}
+              setSelectedEnemy={setSelectedEnemy}
+              isAttacking={isAttacking}
+              stageId={saves?.stage[0].state}
+            />
           </div>
-          <Footer abilities={abilities} heroe={heroe} weapons={weapons} amulet={amulet} setSelectedSkill={setSelectedSkill} selectedSkill={selectedSkill}/>
+          <Footer
+            abilities={abilities}
+            heroe={heroe}
+            weapons={weapons}
+            amulet={amulet}
+            setSelectedSkill={setSelectedSkill}
+            selectedSkill={selectedSkill}
+          />
         </>
       )}
     </>
