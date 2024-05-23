@@ -2,7 +2,7 @@ import { useState } from "react";
 import { postWithAuth } from "../api/api";
 import Spinner from "./Spinner";
 
-const EmptySaveCard = () => {
+const EmptySaveCard = ({ fetchSaves }) => {
   const [creating, setCreating] = useState(false);
 
   function createSaveSlot() {
@@ -11,16 +11,15 @@ const EmptySaveCard = () => {
       throw new Error("Token not found in localStorage");
     }
 
-    setCreating(true); // Indicar que se está creando antes de la solicitud
-
+    setCreating(true);
     postWithAuth(`/save/slot/create/${user.user_id}`)
-      .then((data) => {
-        // Aquí puedes manejar la respuesta si es necesario
+      .then(() => {
+        fetchSaves();
       })
       .catch((error) => {
         console.error("Error:", error);
       })
-      .finally(() => setCreating(false)); // Indicar que se ha completado la creación
+      .finally(() => setCreating(false));
   }
 
   return (

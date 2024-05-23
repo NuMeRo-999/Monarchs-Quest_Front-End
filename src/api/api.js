@@ -118,7 +118,7 @@ export async function deleteWithAuth(url) {
             throw new Error('Network response was not ok');
         }
 
-        return await response.json();
+        return 0;
     } catch (error) {
         console.error('Error:', error);
         throw error;

@@ -3,18 +3,23 @@ import { Link } from "react-router-dom";
 import { deleteWithAuth } from "../api/api";
 import Spinner from "./Spinner";
 
-const SaveCard = ({ save, saveId }) => {
+const SaveCard = ({ save, saveId, fetchSaves }) => {
   const [deleting, setDeleting] = useState(false);
 
   async function deleteSaveSlot(saveSlotId) {
     setDeleting(true);
     try {
       await deleteWithAuth(`/save/slot/${saveSlotId}`);
+      fetchSaves();
     } catch (error) {
       console.error("Error:", error);
     } finally {
       setDeleting(false);
     }
+  }
+
+  if (!save) {
+    return null;
   }
 
   return (
@@ -24,12 +29,12 @@ const SaveCard = ({ save, saveId }) => {
       ) : (
         <>
           <div>
-            <h2>{save.creationDate.substring(0, save.creationDate.indexOf("T"))}</h2>
+            <h2>{save.creationDate?.substring(0, save.creationDate.indexOf("T"))}</h2>
           </div>
           <div>
             <h2>STAGE: </h2>
             <h2 className="flex gap-5 justify-center items-center">
-              {save?.stage[0]?.stage}
+              {save?.stage?.[0]?.stage}
               <img src="/src/assets/icons/door-icon.png" alt="" />
             </h2>
           </div>
