@@ -22,7 +22,7 @@ const AbilitiesSection = ({ abilities, setSelectedSkill, selectedSkill }) => {
                 src={`${BASE_URL}/img/${abilities[index]?.imageFilename}`}
                 alt=""
                 className={`size-10 image-cursor rounded-md border-white box-border hover:scale-105 transition-transform duration-300 ease-in-out ${
-                  selectedSkill && selectedAbility === abilities[index]?.id ? "border-2 " : ""
+                  selectedSkill && selectedAbility === abilities[index] ? "border-2 " : ""
                 }`}
                 onClick={() => handleSelectedSkill(abilities[index])}
               />
