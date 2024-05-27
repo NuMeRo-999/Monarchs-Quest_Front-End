@@ -9,7 +9,7 @@ const ContextMenu = ({ inventory, index }) => {
     e.preventDefault();
     setContextMenu({
       index: index,
-      position: { top: e.clientY - 180, left: e.clientX - 420 },
+      position: { top: e.clientY - 180, left: e.clientX - 300 },
     });
   }
 
@@ -36,7 +36,8 @@ const ContextMenu = ({ inventory, index }) => {
             inventory[index]?.image.includes('sword') ||
             inventory[index]?.image.includes('dagger') ||
             inventory[index]?.image.includes('hammer') ||
-            inventory[index]?.image.includes('spear')
+            inventory[index]?.image.includes('spear') ||
+            inventory[index]?.image.includes("axe")
               ? 'w-4 h-15 rotate-45'
               : 'size-10'
           }`}

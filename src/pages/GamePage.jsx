@@ -11,6 +11,7 @@ import Loading from "../components/Loading";
 import Heroe from "../components/Heroe";
 import Enemies from "../components/Enemies";
 import { getWithAuth } from "../api/api";
+import WinStageModal from "../components/WinStageModal";
 
 const GamePage = () => {
   const { gameId } = useParams();
@@ -43,7 +44,7 @@ const GamePage = () => {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [gameId]);
 
   useEffect(() => {
     const attackHeroe = async () => {
@@ -69,7 +70,6 @@ const GamePage = () => {
     const buffHeroe = async () => {
       if (selectedSkill && !selectedEnemy && selectedSkill.type === "Buff") {
         try {
-          // setIsAttacking(true);
           await getWithAuth(`/heroe/buff/${heroe.id}/${selectedSkill.id}`).then(
             (response) => {
               setHeroe(response.heroe);
@@ -86,8 +86,8 @@ const GamePage = () => {
     };
 
     const enemyAttack = async () => {
-      if (saves.stage[0].state === 2) {
-        enemies.filter(enemy => enemy.state === 1).forEach(async enemy => {
+      if (saves?.stage[0]?.state === 2) {
+        enemies?.filter(enemy => enemy.state === 1).forEach(async enemy => {
           try {
             setIsAttacking(true);
             await getWithAuth(`/enemy/attack/${heroe.id}/${enemy.id}`).then((response) => {
@@ -106,9 +106,10 @@ const GamePage = () => {
     enemyAttack();
     attackHeroe();
     buffHeroe();
-  }, [selectedSkill, selectedEnemy]);
+  }, [selectedSkill, selectedEnemy, enemies, heroe.id, saves]);
 
-  console.log(saves?.stage)
+  const areAllEnemiesDead = enemies.every(enemy => enemy.state === 0);
+
   return (
     <>
       {loading ? (
@@ -134,6 +135,9 @@ const GamePage = () => {
               stageId={saves?.stage[0].state}
             />
           </div>
+          {areAllEnemiesDead && (
+            <WinStageModal />
+          )}
           <Footer
             abilities={abilities}
             heroe={heroe}

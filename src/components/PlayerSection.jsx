@@ -2,7 +2,6 @@ import { BASE_URL } from '../api/apiRequest'
 
 const PlayerSection = ({heroe}) => {
 
-  console.log(heroe)
   return (
     <div className="flex justify-center items-center gap-4 bg-[url('/src/assets/images/abilities-border.png')] bg-cover h-44 w-80 p-8">
           <div className="flex flex-col gap-2 items-center justify-center">

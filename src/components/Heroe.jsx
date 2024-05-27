@@ -10,7 +10,7 @@ const Heroe = ({ heroe, weapons, isAttacking, stageId }) => {
         backgroundImage: `url('${BASE_URL}/img/${heroe?.imageFilename}')`,
       }}
     >
-      {weapons.map((weapon, index) => (
+      {weapons.slice(0, 2).map((weapon, index) => (
         <div key={index}>
           <img
             src={`${BASE_URL}/img/${weapon?.image}`}
@@ -23,6 +23,15 @@ const Heroe = ({ heroe, weapons, isAttacking, stageId }) => {
           />
         </div>
       ))}
+      {weapons.length < 2 && (
+        <div>
+          <img
+            src=""
+            alt=""
+            className="item-animation w-12"
+          />
+        </div>
+      )}
     </div>
   );
 };
