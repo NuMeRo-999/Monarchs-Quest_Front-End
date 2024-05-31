@@ -1,26 +1,51 @@
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import { getWithAuth } from "../api/api";
-import { BASE_URL } from "../api/apiRequest";
+import { BASE_URL, getSaveSlot } from "../api/apiRequest";
 import Spinner from "./Spinner";
 
-const WinStageModal = () => {
+const WinStageModal = ({ setSaves, setEnemies, hasShownModalRef }) => {
   const [items, setItems] = useState([]);
   const { gameId } = useParams();
 
-  useEffect(() => {
-    const fetchItems = async () => {
-      await getWithAuth(`/save/slot/add-items/${gameId}`)
-        .then((response) => {
-          setItems(response);
-        })
-        .catch((error) => {
-          console.error("Error:", error);
-        });
-    };
+  const handleContinue = async () => {
+    const modal = document.querySelector(".font-pixelify");
+    modal.classList.add("slide-in-left");
 
-    fetchItems();
-  }, []);
+    try {
+      await getWithAuth(`/save/slot/next-stage/${gameId}`);
+      const response = await getSaveSlot(gameId);
+      
+      setTimeout(() => {
+        setSaves(response);
+        setEnemies(response.stage[0].enemies);
+        modal.classList.remove("slide-in-left");
+        modal.classList.add("center-to-right");
+      }, 2000);
+      
+      setTimeout(() => {
+        modal.classList.remove("center-to-right");
+        // Marcar que el modal ha sido mostrado
+        hasShownModalRef.current = true;
+      }, 3000);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  };
+
+  useEffect(() => {
+    if (!hasShownModalRef.current) {
+      const fetchItems = async () => {
+        try {
+          const response = await getWithAuth(`/save/slot/add-items/${gameId}`);
+          setItems(response);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+      };
+      fetchItems();
+    }
+  }, [gameId, hasShownModalRef]);
 
   return (
     <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center z-50">
@@ -56,7 +81,10 @@ const WinStageModal = () => {
         </div>
 
         <div className="flex justify-center gap-4">
-          <button className="bg-[url('/src/assets/images/button.png')] bg-cover h-12 w-[15.3rem] flex justify-center items-center text-white font-bold py-2 px-4 rounded">
+          <button
+            className="bg-[url('/src/assets/images/button.png')] bg-cover h-12 w-[15.3rem] flex justify-center items-center text-white font-bold py-2 px-4 rounded"
+            onClick={handleContinue}
+          >
             Continuar
           </button>
         </div>

@@ -1,7 +1,7 @@
+import { useEffect, useState, useRef } from "react";
 import { useParams } from "react-router-dom";
 import Footer from "../components/Footer";
 import Header from "../components/Header";
-import { useEffect, useState } from "react";
 import {
   getAmuletEquiped,
   getSaveSlot,
@@ -27,6 +27,9 @@ const GamePage = () => {
   const [selectedSkill, setSelectedSkill] = useState([]);
   const [selectedEnemy, setSelectedEnemy] = useState(null);
   const [isAttacking, setIsAttacking] = useState(false);
+
+  const [areAllEnemiesDead, setAreAllEnemiesDead] = useState(false);
+  const hasShownModalRef = useRef(false);
 
   useEffect(() => {
     Promise.all([getSaveSlot(gameId), getWeaponsEquiped(), getAmuletEquiped()])
@@ -87,10 +90,11 @@ const GamePage = () => {
 
     const enemyAttack = async () => {
       if (saves?.stage[0]?.state === 2) {
-        enemies?.filter(enemy => enemy.state === 1).forEach(async enemy => {
+        const attackingEnemies = enemies.filter((enemy) => enemy.state === 1);
+        if (attackingEnemies.length > 0) {
           try {
             setIsAttacking(true);
-            await getWithAuth(`/enemy/attack/${heroe.id}/${enemy.id}`).then((response) => {
+            await getWithAuth(`/enemy/attack/${heroe.id}`).then((response) => {
               setHeroe(response.heroe);
               setSaves(response.saveSlot);
             });
@@ -99,7 +103,7 @@ const GamePage = () => {
           } finally {
             setIsAttacking(false);
           }
-        });
+        }
       }
     };
 
@@ -108,25 +112,40 @@ const GamePage = () => {
     buffHeroe();
   }, [selectedSkill, selectedEnemy, enemies, heroe.id, saves]);
 
-  const areAllEnemiesDead = enemies.every(enemy => enemy.state === 0);
+  useEffect(() => {
+    if (enemies.length > 0 && enemies.every((enemy) => enemy.state === 0)) {
+      setAreAllEnemiesDead(true);
+    } else {
+      setAreAllEnemiesDead(false);
+    }
+  }, [enemies]);
+
+  useEffect(() => {
+    if (areAllEnemiesDead && !hasShownModalRef.current) {
+      hasShownModalRef.current = true;
+    }
+  }, [areAllEnemiesDead]);
 
   return (
     <>
       {loading ? (
-        <>
-          <div className="bg-auto font-pixel size-screen bg-gradient">
-            <div className=" bg-[url('/src/assets/images/background.png')] bg-[length:150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
-              <div className="h-screen w-screen font-pixelify flex justify-center items-center">
-                <Loading />
-              </div>
+        <div className="bg-auto font-pixel size-screen bg-gradient">
+          <div className=" bg-[url('/src/assets/images/background.png')] bg-[length:150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
+            <div className="h-screen w-screen font-pixelify flex justify-center items-center">
+              <Loading />
             </div>
           </div>
-        </>
+        </div>
       ) : (
         <>
           <Header saves={saves} />
           <div className="bg-[url(/src/assets/images/game-background.png)] bg-cover h-[57.5vh]">
-            <Heroe heroe={heroe} weapons={weapons} isAttacking={isAttacking} stageId={saves?.stage[0].state} />
+            <Heroe
+              heroe={heroe}
+              weapons={weapons}
+              isAttacking={isAttacking}
+              stageId={saves?.stage[0].state}
+            />
             <Enemies
               enemies={enemies}
               selectedEnemy={selectedEnemy}
@@ -136,7 +155,11 @@ const GamePage = () => {
             />
           </div>
           {areAllEnemiesDead && (
-            <WinStageModal />
+            <WinStageModal
+              setSaves={setSaves}
+              setEnemies={setEnemies}
+              hasShownModalRef={hasShownModalRef}
+            />
           )}
           <Footer
             abilities={abilities}
