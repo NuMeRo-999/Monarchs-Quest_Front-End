@@ -1,30 +1,120 @@
 import { useEffect, useState } from "react";
-import { BASE_URL } from "../api/apiRequest";
+import {
+  BASE_URL,
+  getAmuletEquiped,
+  getSaveSlot,
+  getWeaponsEquiped,
+} from "../api/apiRequest";
 import ItemDetail from "./ItemDetail";
+import { postWithAuth } from "../api/api";
+import { useParams } from "react-router-dom";
 
-const ContextMenu = ({ inventory, index }) => {
+const ContextMenu = ({
+  inventory,
+  index,
+  setInventory,
+  getInventory,
+  saves,
+  setHeroe,
+  setAmulet,
+  setWeapons,
+}) => {
   const [contextMenu, setContextMenu] = useState(null);
+  const { gameId } = useParams();
 
   function handleContextMenu(e, index) {
     e.preventDefault();
     setContextMenu({
       index: index,
-      position: { top: e.clientY - 180, left: e.clientX - 300 },
+      position: { top: 60, left: 60 },
     });
   }
 
-  function handleClickOutsideContextMenu(e) {
-    if (contextMenu && !e.target.closest(".context-menu")) {
-      setContextMenu(null);
+  async function refreshInventory() {
+    try {
+      const data = await getInventory();
+      setInventory(data);
+    } catch (error) {
+      console.error("Error:", error);
     }
   }
 
   useEffect(() => {
+    function handleClickOutsideContextMenu(e) {
+      if (contextMenu && !e.target.closest(".context-menu")) {
+        setContextMenu(null);
+      }
+    }
+
     document.addEventListener("click", handleClickOutsideContextMenu);
     return () => {
       document.removeEventListener("click", handleClickOutsideContextMenu);
     };
   }, [contextMenu]);
+
+  async function handleConsumeItem() {
+    setContextMenu(null);
+    try {
+      await postWithAuth(
+        `/heroe/consume-item/${saves?.stage[0]?.heroes[0]?.id}/${inventory[index]?.id}`
+      );
+      await refreshInventory();
+      const response = await getSaveSlot(gameId);
+      setHeroe(response.stage[0].heroes[0]);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  async function handleEquipItem() {
+    setContextMenu(null);
+    try {
+      await postWithAuth(`/heroe/equip-item/${inventory[index]?.id}`);
+      await refreshInventory();
+      const [weapons, amulet] = await Promise.all([
+        getWeaponsEquiped(),
+        getAmuletEquiped(),
+      ]);
+      setWeapons(weapons);
+      setAmulet(amulet);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  async function handleUnequipItem() {
+    setContextMenu(null);
+    try {
+      await postWithAuth(`/heroe/unequip-item/${inventory[index]?.id}`);
+      await refreshInventory();
+      const [weapons, amulet] = await Promise.all([
+        getWeaponsEquiped(),
+        getAmuletEquiped(),
+      ]);
+      setWeapons(weapons);
+      setAmulet(amulet);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
+
+  async function handleDeleteItem() {
+    setContextMenu(null);
+    try {
+      await postWithAuth(
+        `/heroe/delete-item/${saves?.stage[0]?.heroes[0]?.id}/${inventory[index]?.id}`
+      );
+      await refreshInventory();
+      const [weapons, amulet] = await Promise.all([
+        getWeaponsEquiped(),
+        getAmuletEquiped(),
+      ]);
+      setWeapons(weapons);
+      setAmulet(amulet);
+    } catch (error) {
+      console.error("Error:", error);
+    }
+  }
 
   return (
     <>
@@ -33,13 +123,13 @@ const ContextMenu = ({ inventory, index }) => {
           src={`${BASE_URL}/img/${inventory[index]?.image}`}
           alt=""
           className={` image-cursor rounded ${
-            inventory[index]?.image.includes('sword') ||
-            inventory[index]?.image.includes('dagger') ||
-            inventory[index]?.image.includes('hammer') ||
-            inventory[index]?.image.includes('spear') ||
+            inventory[index]?.image.includes("sword") ||
+            inventory[index]?.image.includes("dagger") ||
+            inventory[index]?.image.includes("hammer") ||
+            inventory[index]?.image.includes("spear") ||
             inventory[index]?.image.includes("axe")
-              ? 'w-4 h-15 rotate-45'
-              : 'size-10'
+              ? "w-4 h-15 rotate-45"
+              : "size-10"
           }`}
           onContextMenu={(e) => handleContextMenu(e, index)}
         />
@@ -59,7 +149,7 @@ const ContextMenu = ({ inventory, index }) => {
         >
           {inventory[index].type === "consumible" ? (
             <button
-              onClick={() => setContextMenu(null)}
+              onClick={() => handleConsumeItem()}
               className="image-cursor hover:bg-[#382f35] size-full rounded-t-lg border-b border-gray-400"
               id={inventory[index]?.id}
             >
@@ -67,7 +157,7 @@ const ContextMenu = ({ inventory, index }) => {
             </button>
           ) : inventory[index].state ? (
             <button
-              onClick={() => setContextMenu(null)}
+              onClick={() => handleUnequipItem()}
               className="image-cursor hover:bg-[#382f35] size-full rounded-t-lg border-b border-gray-400"
               id={inventory[index]?.id}
             >
@@ -75,16 +165,20 @@ const ContextMenu = ({ inventory, index }) => {
             </button>
           ) : (
             <button
-              onClick={() => setContextMenu(null)}
+              onClick={() => handleEquipItem()}
               className="image-cursor hover:bg-[#382f35] size-full rounded-t-lg border-b border-gray-400"
               id={inventory[index]?.id}
             >
               Equipar
             </button>
           )}
-          <ItemDetail inventory={inventory} index={index} setContextMenu={setContextMenu} />
+          <ItemDetail
+            inventory={inventory}
+            index={index}
+            setContextMenu={setContextMenu}
+          />
           <button
-            onClick={() => setContextMenu(null)}
+            onClick={() => handleDeleteItem()}
             className="image-cursor hover:bg-[#382f35] size-full rounded-b-lg"
             id={inventory[index]?.id}
           >

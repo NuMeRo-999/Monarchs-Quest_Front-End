@@ -31,7 +31,6 @@ const ItemDetail = ({ inventory, index }) => {
     }
   }
 
-  console.log(ItemDetail);
 
   return (
     <>

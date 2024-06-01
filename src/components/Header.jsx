@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import InventoryModal from "./InventoryModal";
 
-const Header = ({ saves }) => {
+const Header = ({ saves, setHeroe, setAmulet, setWeapons, inventory, setInventory }) => {
   
 
   return (
@@ -24,7 +24,7 @@ const Header = ({ saves }) => {
       </div>
 
       <div className="flex items-center gap-2 font-pixelify text-xl">
-        <InventoryModal/>
+        <InventoryModal saves={saves} setHeroe={setHeroe} setWeapons={setWeapons} setAmulet={setAmulet} inventory={inventory} setInventory={setInventory}/>
         <Link
           to="/saves"
           className="flex justify-center items-center image-cursor leading-4 text-2xl bg-[url('/src/assets/images/button.png')] bg-cover h-10 text-white w-52 text-center font-bold"

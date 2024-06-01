@@ -81,3 +81,12 @@ export async function getAmuletEquiped() {
     throw error;
   }
 }
+
+export async function getInventory() {
+  try {
+    return await getWithAuth(`/item/equiped_items`);
+  } catch (error) {
+    console.error("Error:", error);
+    throw error;
+  }
+}

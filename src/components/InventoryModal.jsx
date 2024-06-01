@@ -1,15 +1,13 @@
-import { useEffect } from "react";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { getWithAuth } from "../api/api";
 import ContextMenu from "./ContextMenu";
 import CloseModalButton from "./CloseModalButton";
 import Spinner from "./Spinner";
+import { getInventory } from "../api/apiRequest";
 
-const InventoryModal = () => {
+const InventoryModal = ({ saves, setHeroe, setAmulet, setWeapons, inventory, setInventory }) => {
   const [showModal, setShowModal] = useState(false);
-  const [inventory, setInventory] = useState([]);
-  const [loading, setLoading] = useState(true)
-
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     getInventory()
@@ -18,19 +16,10 @@ const InventoryModal = () => {
       })
       .catch((error) => {
         console.error("Error:", error);
+      }).finally(() => {
+        setLoading(false);
       });
   }, []);
-
-  async function getInventory() {
-    try {
-      return await getWithAuth(`/item/equiped_items`);
-    } catch (error) {
-      console.error("Error:", error);
-      throw error;
-    } finally { setLoading(false) }
-  }
-
- 
 
   return (
     <>
@@ -45,25 +34,32 @@ const InventoryModal = () => {
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-40 outline-none focus:outline-none">
             <div className="relative flex items-center justify-center">
-            <CloseModalButton setShowModal={setShowModal}/>
+              <CloseModalButton setShowModal={setShowModal} />
               <div className="bg-[url('/src/assets/images/Inventory.png')] bg-cover w-[80vw] h-[77.7vh] grid grid-cols-10 p-20 z-20 text-3xl justify-center">
                 {loading ? (
-                    <Spinner/>
-                ) : inventory.length > 0 ? (
+                  <Spinner />
+                ) : (
                   [...Array(40)].map((_, index) => (
                     <div
                       key={inventory[index]?.id}
                       id={inventory[index]?.id}
                       className="bg-[url('/src/assets/images/inventory-slot-1.png')] bg-cover size-20 flex justify-center items-center relative"
                     >
-                      <ContextMenu inventory={inventory} index={index}/>
+                      <ContextMenu
+                        inventory={inventory}
+                        index={index}
+                        setInventory={setInventory}
+                        getInventory={getInventory}
+                        saves={saves}
+                        setHeroe={setHeroe}
+                        setWeapons={setWeapons}
+                        setAmulet={setAmulet}
+                      />
                       <p className="text-white absolute bottom-2 right-2 text-xl font-m04">
                         {inventory[index]?.quantity}
                       </p>
                     </div>
                   ))
-                ) : (
-                  <div className="text-center text-2xl">No hay items disponibles</div>
                 )}
               </div>
             </div>
