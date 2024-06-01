@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getWithAuth } from "../api/api";
-import { BASE_URL, getSaveSlot } from "../api/apiRequest";
+import { BASE_URL, getInventory, getSaveSlot } from "../api/apiRequest";
 import Spinner from "./Spinner";
 
-const WinStageModal = ({ setSaves, setEnemies, hasShownModalRef }) => {
+const WinStageModal = ({ setSaves, setEnemies, hasShownModalRef, setInventory }) => {
   const [items, setItems] = useState([]);
   const { gameId } = useParams();
 
@@ -15,18 +15,17 @@ const WinStageModal = ({ setSaves, setEnemies, hasShownModalRef }) => {
     try {
       await getWithAuth(`/save/slot/next-stage/${gameId}`);
       const response = await getSaveSlot(gameId);
-      
+
       setTimeout(() => {
         setSaves(response);
         setEnemies(response.stage[0].enemies);
         modal.classList.remove("slide-in-left");
         modal.classList.add("center-to-right");
       }, 2000);
-      
+
       setTimeout(() => {
         modal.classList.remove("center-to-right");
-        // Marcar que el modal ha sido mostrado
-        hasShownModalRef.current = true;
+        hasShownModalRef.current = false;
       }, 3000);
     } catch (error) {
       console.error("Error:", error);
@@ -34,18 +33,23 @@ const WinStageModal = ({ setSaves, setEnemies, hasShownModalRef }) => {
   };
 
   useEffect(() => {
-    if (!hasShownModalRef.current) {
-      const fetchItems = async () => {
-        try {
-          const response = await getWithAuth(`/save/slot/add-items/${gameId}`);
-          setItems(response);
-        } catch (error) {
-          console.error("Error:", error);
+    const fetchInventoryAndItems = async () => {
+      try {
+        const inventory = await getInventory();
+        setInventory(inventory);
+
+        if (hasShownModalRef.current) {
+          const itemsResponse = await getWithAuth(`/save/slot/add-items/${gameId}`);
+          setItems(itemsResponse);
+          hasShownModalRef.current = false;
         }
-      };
-      fetchItems();
-    }
-  }, [gameId, hasShownModalRef]);
+      } catch (error) {
+        console.error("Error:", error);
+      }
+    };
+
+    fetchInventoryAndItems();
+  }, [gameId, hasShownModalRef, setInventory]);
 
   return (
     <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center z-50">

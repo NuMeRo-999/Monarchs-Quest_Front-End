@@ -22,6 +22,7 @@ const GamePage = () => {
   const [amulet, setAmulet] = useState([]);
   const [saves, setSaves] = useState([]);
   const [heroe, setHeroe] = useState([]);
+  const [inventory, setInventory] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [selectedSkill, setSelectedSkill] = useState([]);
@@ -138,7 +139,14 @@ const GamePage = () => {
         </div>
       ) : (
         <>
-          <Header saves={saves} />
+          <Header
+            saves={saves}
+            setHeroe={setHeroe}
+            setWeapons={setWeapons}
+            setAmulet={setAmulet}
+            inventory={inventory}
+            setInventory={setInventory}
+          />
           <div className="bg-[url(/src/assets/images/game-background.png)] bg-cover h-[57.5vh]">
             <Heroe
               heroe={heroe}
@@ -159,6 +167,7 @@ const GamePage = () => {
               setSaves={setSaves}
               setEnemies={setEnemies}
               hasShownModalRef={hasShownModalRef}
+              setInventory={setInventory}
             />
           )}
           <Footer
