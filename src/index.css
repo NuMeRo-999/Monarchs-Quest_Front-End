@@ -12,10 +12,10 @@
   src: url('assets/fonts/m04.TTF') format('truetype');
 }
 
-@font-face {
+/* @font-face {
   font-family: 'Pixelify Sans';
-  src: url('src/assets/fonts/PixelifySans-VariableFont_wght.ttf') format('truetype');
-}
+  src: url('PixelifySans-Medium.ttf') format('truetype'),
+} */
 
 .font-pixel {
   font-family: 'DungeonFont', sans-serif;
