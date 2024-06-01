@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import { getWithAuth } from "../api/api";
 import ContextMenu from "./ContextMenu";
 import CloseModalButton from "./CloseModalButton";
 import Spinner from "./Spinner";
