@@ -48,10 +48,10 @@ const RegisterPage = () => {
     
     return (
         <div className="bg-auto font-pixel size-screen bg-gradient">
-            <div className=" bg-[url('src/assets/images/background.png')] bg-[length:150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
+            <div className=" bg-[url('/src/assets/images/background.png')] bg-[length:150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
                 <div className="bg-gradient-2"></div>
-                <div className="bg-[url('src/assets/images/home.png')] bg-cover h-[90%] w-[56%] flex flex-col justify-center items-center z-10">
-                <img className="w-96" src="src/assets/images/MonarchQuest.png" alt="" />
+                <div className="bg-[url('/src/assets/images/home.png')] bg-cover h-[90%] w-[56%] flex flex-col justify-center items-center z-10">
+                <img className="w-96" src="/src/assets/images/MonarchQuest.png" alt="" />
                     {error ?(<div>{error}</div>):('')}
                     <form className="max-w-sm mx-auto w-full z-10" onSubmit={handleSubmit}>
                         <div className="flex flex-col">
