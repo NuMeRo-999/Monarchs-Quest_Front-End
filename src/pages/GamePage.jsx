@@ -12,6 +12,7 @@ import Heroe from "../components/Heroe";
 import Enemies from "../components/Enemies";
 import { getWithAuth } from "../api/api";
 import WinStageModal from "../components/WinStageModal";
+import LoseStageModal from "../components/LoseStageModal";
 
 const GamePage = () => {
   const { gameId } = useParams();
@@ -162,6 +163,9 @@ const GamePage = () => {
               stageId={saves?.stage[0].state}
             />
           </div>
+
+          {heroe.healthPoints <= 0 && <LoseStageModal />}
+          
           {areAllEnemiesDead && (
             <WinStageModal
               setSaves={setSaves}
