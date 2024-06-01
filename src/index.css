@@ -2,10 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-@font-face {
-  font-family: 'DungeonFont';
-  src: url('assets/fonts/DungeonFont.ttf') format('truetype');
-}
 
 @font-face {
   font-family: 'm04';
@@ -16,10 +12,6 @@
   font-family: 'Pixelify Sans';
   src: url('PixelifySans-Medium.ttf') format('truetype'),
 } */
-
-.font-pixel {
-  font-family: 'DungeonFont', sans-serif;
-}
 
 .silkscreen-regular {
   font-family: "Silkscreen", sans-serif;

@@ -39,7 +39,7 @@ const LoginPage = () => {
 
 
     return (
-        <div className="bg-auto font-pixel size-screen bg-gradient">
+        <div className="bg-auto font-pixelify size-screen bg-gradient">
             <div className=" bg-[url('/src/assets/images/background.png')] bg-[length:150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
                 <div className="bg-gradient-2"></div>
                 <div className="bg-[url('/src/assets/images/home.png')] bg-cover h-[90%] w-[56%] flex flex-col justify-center items-center z-10">
