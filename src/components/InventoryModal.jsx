@@ -9,7 +9,7 @@ const InventoryModal = ({ saves, setHeroe, setAmulet, setWeapons, inventory, set
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    getInventory()
+    getInventory(saves.id)
       .then((data) => {
         setInventory(data);
       })

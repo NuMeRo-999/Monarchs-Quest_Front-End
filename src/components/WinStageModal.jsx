@@ -32,7 +32,7 @@ const WinStageModal = ({ setSaves, setEnemies, hasShownModalRef, setInventory })
   };
 
   useEffect(() => {
-    getInventory()
+    getInventory(gameId)
       .then((data) => {
         setInventory(data);
       })

@@ -32,7 +32,7 @@ const ContextMenu = ({
 
   async function refreshInventory() {
     try {
-      const data = await getInventory();
+      const data = await getInventory(gameId);
       setInventory(data);
     } catch (error) {
       console.error("Error:", error);
