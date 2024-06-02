@@ -34,7 +34,7 @@ const GamePage = () => {
   const hasShownModalRef = useRef(false);
 
   useEffect(() => {
-    Promise.all([getSaveSlot(gameId), getWeaponsEquiped(), getAmuletEquiped()])
+    Promise.all([getSaveSlot(gameId), getWeaponsEquiped(gameId), getAmuletEquiped(gameId)])
       .then(([saveData, weaponsData, amuletData]) => {
         setSaves(saveData);
         setAbilities(saveData.stage[0].heroes[0].abilities);
@@ -127,6 +127,10 @@ const GamePage = () => {
       hasShownModalRef.current = true;
     }
   }, [areAllEnemiesDead]);
+
+  console.log(saves)
+  console.log(heroe)
+  console.log(inventory)
 
   return (
     <>

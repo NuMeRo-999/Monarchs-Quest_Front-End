@@ -60,10 +60,10 @@ export async function getSaveSlot(saveSlotId) {
   }
 }
 
-export async function getWeaponsEquiped() {
+export async function getWeaponsEquiped(stageId) {
   try {
 
-    return await getWithAuth(`/item/equiped_weapons`);
+    return await getWithAuth(`/item/equiped_weapons/`+stageId);
 
   } catch (error) {
     console.error("Error:", error);
@@ -71,10 +71,10 @@ export async function getWeaponsEquiped() {
   }
 }
 
-export async function getAmuletEquiped() {
+export async function getAmuletEquiped(stageId) {
   try {
 
-    return await getWithAuth(`/item/equiped_amulet`);
+    return await getWithAuth(`/item/equiped_amulet/`+stageId);
 
   } catch (error) {
     console.error("Error:", error);
@@ -82,9 +82,9 @@ export async function getAmuletEquiped() {
   }
 }
 
-export async function getInventory() {
+export async function getInventory(stageId) {
   try {
-    return await getWithAuth(`/item/equiped_items`);
+    return await getWithAuth(`/item/equiped_items/`+stageId);
   } catch (error) {
     console.error("Error:", error);
     throw error;
