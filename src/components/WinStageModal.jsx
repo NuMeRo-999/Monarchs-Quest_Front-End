@@ -26,20 +26,15 @@ const WinStageModal = ({ setSaves, setEnemies, hasShownModalRef, setInventory })
       setTimeout(() => {
         modal.classList.remove("center-to-right");
       }, 3000);
+
+      getInventory(gameId).then((data) => {
+        setInventory(data);
+      });
+
     } catch (error) {
       console.error("Error:", error);
     }
   };
-
-  useEffect(() => {
-    getInventory(gameId)
-      .then((data) => {
-        setInventory(data);
-      })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }, []);
 
   useEffect(() => {
     if (hasShownModalRef.current) {
