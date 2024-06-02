@@ -32,21 +32,21 @@ const SaveCard = ({ save, saveId, fetchSaves }) => {
             <h2>{save.creationDate?.substring(0, save.creationDate.indexOf("T"))}</h2>
           </div>
           <div>
-            <h2>STAGE: </h2>
+            <h2>FASE: </h2>
             <h2 className="flex gap-5 justify-center items-center">
               {save?.stage?.[0]?.stage}
               <img src="/src/assets/icons/door-icon.png" alt="" />
             </h2>
           </div>
           <div>
-            <h2>KILLS: </h2>
+            <h2>MUERTES: </h2>
             <h2 className="flex gap-5 justify-center items-center">
               {save.kills}
               <img src="/src/assets/images/skull_01a.png" alt="" />
             </h2>
           </div>
           <div>
-            <h2>MONEY: </h2>
+            <h2>DINERO: </h2>
             <h2 className="flex gap-5 justify-center items-center">
               {save.money}
               <img src="/src/assets/images/coin_05d.png" alt="" />

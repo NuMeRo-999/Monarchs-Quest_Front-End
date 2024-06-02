@@ -68,19 +68,19 @@ const RankingTable = () => {
           <th className="py-2 px-4">
             <div className="flex flex-col gap-1 items-center justify-center">
               <img src="/src/assets/icons/door-icon.png" className="size-8" alt="" />
-              <span>Stage</span>
+              <span>Fase</span>
             </div>
           </th>
           <th className="py-2 px-4">
             <div className="flex flex-col gap-1 items-center justify-center">
               <img src="/src/assets/images/skull_01a.png" className="size-8" alt="" />
-              <span>Kills</span>
+              <span>Muertes</span>
             </div>
           </th>
           <th className="py-2 px-4">
             <div className="flex flex-col gap-1 items-center justify-center">
               <img src="/src/assets/images/coin_05d.png" className="size-8" alt="" />
-              <span>Money</span>
+              <span>Dinero</span>
             </div>
           </th>
         </tr>
