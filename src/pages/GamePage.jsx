@@ -128,10 +128,6 @@ const GamePage = () => {
     }
   }, [areAllEnemiesDead]);
 
-  console.log(saves)
-  console.log(heroe)
-  console.log(inventory)
-
   return (
     <>
       {loading ? (
