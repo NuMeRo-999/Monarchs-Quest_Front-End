@@ -15,17 +15,17 @@ const WinStageModal = ({ setSaves, setEnemies, hasShownModalRef, setInventory })
     try {
       await getWithAuth(`/save/slot/next-stage/${gameId}`);
       const response = await getSaveSlot(gameId);
-
+      
       setTimeout(() => {
         setSaves(response);
         setEnemies(response.stage[0].enemies);
         modal.classList.remove("slide-in-left");
         modal.classList.add("center-to-right");
       }, 2000);
-
+      
       setTimeout(() => {
         modal.classList.remove("center-to-right");
-        hasShownModalRef.current = false;
+        // hasShownModalRef.current = true;
       }, 3000);
     } catch (error) {
       console.error("Error:", error);
@@ -33,24 +33,37 @@ const WinStageModal = ({ setSaves, setEnemies, hasShownModalRef, setInventory })
   };
 
   useEffect(() => {
-    const fetchInventoryAndItems = async () => {
-      try {
-        const inventory = await getInventory();
-        setInventory(inventory);
-
-        if (hasShownModalRef.current) {
-          const itemsResponse = await getWithAuth(`/save/slot/add-items/${gameId}`);
-          setItems(itemsResponse);
-          hasShownModalRef.current = false;
-        }
-      } catch (error) {
+    getInventory()
+      .then((data) => {
+        setInventory(data);
+      })
+      .catch((error) => {
         console.error("Error:", error);
-      }
-    };
+      });
+  }, []);
 
-    fetchInventoryAndItems();
-  }, [gameId, hasShownModalRef, setInventory]);
+  useEffect(() => {
+    console.log('0 '+hasShownModalRef.current)
+    if (hasShownModalRef.current) {
+      const fetchItems = async () => {
+        try {
+          const response = await getWithAuth(`/save/slot/add-items/${gameId}`);
+          setItems(response);
+        } catch (error) {
+          console.error("Error:", error);
+        }
+        console.log('1 ' +hasShownModalRef.current);
+        hasShownModalRef.current = false;
+      };
+      console.log('2 '+hasShownModalRef.current);
+      fetchItems();
+      console.log('3 '+hasShownModalRef.current);
+    }
+  }, []);
 
+  console.log(items)
+
+  
   return (
     <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className="h-[500px] w-[905px] bg-[url('/src/assets/images/abilities-border.png')] bg-cover z-[51] font-pixelify flex flex-col justify-evenly items-center">
