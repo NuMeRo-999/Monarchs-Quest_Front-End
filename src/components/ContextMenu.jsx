@@ -72,8 +72,8 @@ const ContextMenu = ({
       await postWithAuth(`/heroe/equip-item/${inventory[index]?.id}`);
       await refreshInventory();
       const [weapons, amulet] = await Promise.all([
-        getWeaponsEquiped(),
-        getAmuletEquiped(),
+        getWeaponsEquiped(gameId),
+        getAmuletEquiped(gameId),
       ]);
       setWeapons(weapons);
       setAmulet(amulet);
@@ -88,8 +88,8 @@ const ContextMenu = ({
       await postWithAuth(`/heroe/unequip-item/${inventory[index]?.id}`);
       await refreshInventory();
       const [weapons, amulet] = await Promise.all([
-        getWeaponsEquiped(),
-        getAmuletEquiped(),
+        getWeaponsEquiped(gameId),
+        getAmuletEquiped(gameId),
       ]);
       setWeapons(weapons);
       setAmulet(amulet);
@@ -106,8 +106,8 @@ const ContextMenu = ({
       );
       await refreshInventory();
       const [weapons, amulet] = await Promise.all([
-        getWeaponsEquiped(),
-        getAmuletEquiped(),
+        getWeaponsEquiped(gameId),
+        getAmuletEquiped(gameId),
       ]);
       setWeapons(weapons);
       setAmulet(amulet);
