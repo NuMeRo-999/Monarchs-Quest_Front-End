@@ -25,7 +25,6 @@ const WinStageModal = ({ setSaves, setEnemies, hasShownModalRef, setInventory })
       
       setTimeout(() => {
         modal.classList.remove("center-to-right");
-        // hasShownModalRef.current = true;
       }, 3000);
     } catch (error) {
       console.error("Error:", error);
@@ -52,12 +51,9 @@ const WinStageModal = ({ setSaves, setEnemies, hasShownModalRef, setInventory })
         } catch (error) {
           console.error("Error:", error);
         }
-        console.log('1 ' +hasShownModalRef.current);
         hasShownModalRef.current = false;
       };
-      console.log('2 '+hasShownModalRef.current);
       fetchItems();
-      console.log('3 '+hasShownModalRef.current);
     }
   }, []);
 
