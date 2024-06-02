@@ -9,7 +9,7 @@ const Footer = ({ abilities, heroe, weapons, amulet, setSelectedSkill, selectedS
     <div className="flex justify-center gap-10 items-center font-pixelify bg-[url('/src/assets/images/footer-border.png')] bg-cover p-2 pt-7 text-white">
       <div className="flex flex-col space-y-2">
         <div className="text-center font-bold uppercase">Habilidades</div>
-          <AbilitiesSection abilities={abilities} setSelectedSkill={setSelectedSkill} selectedSkill={selectedSkill}/>
+          <AbilitiesSection abilities={abilities} setSelectedSkill={setSelectedSkill} selectedSkill={selectedSkill} weapons={weapons}/>
       </div>
 
       <div className="flex flex-col space-y-2">
