@@ -3,6 +3,7 @@ import ContextMenu from "./ContextMenu";
 import CloseModalButton from "./CloseModalButton";
 import Spinner from "./Spinner";
 import { getInventory } from "../api/apiRequest";
+import PlayAudio from "../utils/PlayAudio";
 
 const InventoryModal = ({ saves, setHeroe, setAmulet, setWeapons, inventory, setInventory }) => {
   const [showModal, setShowModal] = useState(false);
@@ -24,7 +25,8 @@ const InventoryModal = ({ saves, setHeroe, setAmulet, setWeapons, inventory, set
     <>
       <button
         className="image-cursor leading-4 text-2xl bg-[url('/src/assets/images/button.png')] bg-cover h-10 text-white w-52 text-center pt-2 font-bold py-2 px-4"
-        onClick={() => setShowModal(true)}
+        onClick={() => { setShowModal(true); PlayAudio("/src/assets/sounds/Select2.ogg"); }}
+        onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
       >
         Inventario
       </button>

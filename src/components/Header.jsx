@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import InventoryModal from "./InventoryModal";
+import PlayAudio from "../utils/PlayAudio";
 
 const Header = ({ saves, setHeroe, setAmulet, setWeapons, inventory, setInventory }) => {
   
@@ -28,6 +29,8 @@ const Header = ({ saves, setHeroe, setAmulet, setWeapons, inventory, setInventor
         <Link
           to="/saves"
           className="flex justify-center items-center image-cursor leading-4 text-2xl bg-[url('/src/assets/images/button.png')] bg-cover h-10 text-white w-52 text-center font-bold"
+          onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
+          onClick={() => PlayAudio("/src/assets/sounds/Select2.ogg")}
         >
           Salir
         </Link>

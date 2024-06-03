@@ -3,6 +3,7 @@ import { getWithAuth } from "../api/api";
 import { BASE_URL } from "../api/apiRequest";
 import Spinner from "./Spinner";
 import CloseModalButton from "./CloseModalButton";
+import PlayAudio from "../utils/PlayAudio";
 
 const ItemDetail = ({ inventory, index }) => {
   const [showModal, setShowModal] = useState(false);
@@ -37,7 +38,10 @@ const ItemDetail = ({ inventory, index }) => {
       <button
         className="image-cursor hover:bg-[#382f35] size-full border-b border-gray-400"
         id={inventory[index]?.id}
-        onClick={() => setShowModal(true)}
+        onClick={() => {
+          setShowModal(true);
+          PlayAudio("/src/assets/sounds/PopupOpen.ogg");
+        }}
       >
         Detalles
       </button>

@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useAudio } from "../context/AudioContext";
+import PlayAudio from "../utils/PlayAudio";
 
 const HomePage = () => {
   const { isPlaying, audioRef } = useAudio();
@@ -30,6 +31,8 @@ const HomePage = () => {
                 to={"/saves"}
                 type="submit"
                 className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover leading-4 text-2xl h-[2.55rem] text-white w-52 flex justify-center items-center"
+                onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
+                onClick={() => PlayAudio("/src/assets/sounds/Select2.ogg")}
               >
                 Jugar
               </Link>
@@ -37,12 +40,16 @@ const HomePage = () => {
                 to={"/ranking"}
                 type="submit"
                 className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover leading-4 text-2xl h-[2.55rem] text-white w-52 flex justify-center items-center"
+                onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
+                onClick={() => PlayAudio("/src/assets/sounds/Select2.ogg")}
               >
                 Ranking
               </Link>
               <Link
                 to={"/login"}
                 className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover leading-4 text-2xl h-[2.55rem] text-white w-52 flex justify-center items-center"
+                onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
+                onClick={() => PlayAudio("/src/assets/sounds/Select2.ogg")}
               >
                 Salir
               </Link>
@@ -58,6 +65,7 @@ const HomePage = () => {
                   href="https://github.com/NuMeRo-999"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
                 >
                   <img
                     className="size-10"
@@ -69,6 +77,7 @@ const HomePage = () => {
                   href="https://www.linkedin.com/in/pedro-vílchez-peña-4669292b0/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
                 >
                   <img
                     className="size-10"

@@ -1,4 +1,5 @@
 import { BASE_URL } from "../api/apiRequest";
+import PlayAudio from "../utils/PlayAudio";
 
 const Enemies = ({ enemies, setSelectedEnemy, selectedEnemy, isAttacking, stageId }) => {
 
@@ -10,7 +11,10 @@ const Enemies = ({ enemies, setSelectedEnemy, selectedEnemy, isAttacking, stageI
         style={{
           backgroundImage: `url('${BASE_URL}/img/${enemies[0]?.imageFilename}')`,
         }}
-        onClick={() => setSelectedEnemy(enemies[0]?.state === 0 ? null : enemies[0]?.id)}
+        onClick={() => {
+          setSelectedEnemy(enemies[0]?.state === 0 ? null : enemies[0]?.id);
+          PlayAudio("/src/assets/sounds/Cursor2.ogg");
+        }}
       >
       {enemies[0]?.state !== 0 && (
         <div className="bg-[url('/src/assets/images/level-health-bar.png')] bg-contain bg-bottom bg-no-repeat h-20">
@@ -26,7 +30,10 @@ const Enemies = ({ enemies, setSelectedEnemy, selectedEnemy, isAttacking, stageI
         style={{
           backgroundImage: `url('${BASE_URL}/img/${enemies[1]?.imageFilename}')`,
         }}
-        onClick={() => setSelectedEnemy(enemies[1]?.state === 0 ? null : enemies[1]?.id)}
+        onClick={() => {
+          setSelectedEnemy(enemies[1]?.state === 0 ? null : enemies[1]?.id);
+          PlayAudio("/src/assets/sounds/Cursor2.ogg");
+        }}
       >
         {enemies[1]?.state !== 0 && (
           <div className="bg-[url('/src/assets/images/level-health-bar.png')] bg-contain bg-bottom bg-no-repeat h-20">
@@ -42,7 +49,10 @@ const Enemies = ({ enemies, setSelectedEnemy, selectedEnemy, isAttacking, stageI
         style={{
           backgroundImage: `url('${BASE_URL}/img/${enemies[2]?.imageFilename}')`,
         }}
-        onClick={() => setSelectedEnemy(enemies[2]?.state === 0 ? null : enemies[2]?.id)}
+        onClick={() => {
+          setSelectedEnemy(enemies[2]?.state === 0 ? null : enemies[2]?.id);
+          PlayAudio("/src/assets/sounds/Cursor2.ogg");
+        }}
       >
         {enemies[2]?.state !== 0 && (
           <div className="bg-[url('/src/assets/images/level-health-bar.png')] bg-contain bg-bottom bg-no-repeat h-20">

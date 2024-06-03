@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { getWithAuth } from "../api/api";
 import { BASE_URL, getInventory, getSaveSlot } from "../api/apiRequest";
 import Spinner from "./Spinner";
+import PlayAudio from "../utils/PlayAudio";
 
 const WinStageModal = ({ setSaves, setEnemies, hasShownModalRef, setInventory }) => {
   const [items, setItems] = useState([]);
@@ -38,8 +39,7 @@ const WinStageModal = ({ setSaves, setEnemies, hasShownModalRef, setInventory })
 
   useEffect(() => {
     if (hasShownModalRef.current) {
-      const audio = new Audio("/src/assets/sounds/winharpsichord-39642.ogg");
-      audio.play();
+      PlayAudio("/src/assets/sounds/winharpsichord-39642.ogg");
       const fetchItems = async () => {
         try {
           const response = await getWithAuth(`/save/slot/add-items/${gameId}`);

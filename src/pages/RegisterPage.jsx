@@ -1,6 +1,7 @@
 import { useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { login } from "../api/apiRequest"
+import PlayAudio from "../utils/PlayAudio"
 
 const RegisterPage = () => {
     const [username, setUser] = useState("")
@@ -15,6 +16,7 @@ const RegisterPage = () => {
 
     async function handleSubmit(e) {
         e.preventDefault();
+        PlayAudio("/src/assets/sounds/Select2.ogg")
         checkPasswordsMatch();
 
         if (error === null) {
@@ -68,8 +70,8 @@ const RegisterPage = () => {
                                 <button type="button" className="absolute inset-y-0 right-0 pr-2 flex items-center" onClick={toggleShowPassword2}> {showPassword2 ? <i className="fas fa-eye-slash"></i> : <i className="fas fa-eye"></i>} </button>
                             </div>
                             <div className="flex flex-col justify-center items-center gap-3 mt-2">
-                                <button type="submit" className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover leading-4 text-2xl w-52 h-10 text-white flex justify-center items-center" onClick={handleSubmit}>Confirmar</button>
-                                <Link to={'/login'} className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover text-center leading-4 text-2xl w-52 h-10 text-white flex justify-center items-center" >Inicia Sesión</Link>
+                                <button type="submit" className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover leading-4 text-2xl w-52 h-10 text-white flex justify-center items-center" onClick={handleSubmit} onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}>Confirmar</button>
+                                <Link to={'/login'} className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover text-center leading-4 text-2xl w-52 h-10 text-white flex justify-center items-center" onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")} onClick={() => PlayAudio("/src/assets/sounds/Select2.ogg")}>Inicia Sesión</Link>
                             </div>
                         </div>
                     </form>

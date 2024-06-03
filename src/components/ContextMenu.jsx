@@ -8,6 +8,7 @@ import {
 import ItemDetail from "./ItemDetail";
 import { postWithAuth } from "../api/api";
 import { useParams } from "react-router-dom";
+import PlayAudio from "../utils/PlayAudio";
 
 const ContextMenu = ({
   inventory,
@@ -24,6 +25,7 @@ const ContextMenu = ({
 
   function handleContextMenu(e, index) {
     e.preventDefault();
+    PlayAudio("/src/assets/sounds/Select1.ogg");
     setContextMenu({
       index: index,
       position: { top: 60, left: 60 },
@@ -53,8 +55,7 @@ const ContextMenu = ({
   }, [contextMenu]);
 
   async function handleConsumeItem() {
-    const audio = new Audio("/src/assets/sounds/health-pickup-6860.ogg");
-    audio.play();
+    PlayAudio("/src/assets/sounds/health-pickup-6860.ogg");
     setContextMenu(null);
     try {
       await postWithAuth(
@@ -69,8 +70,7 @@ const ContextMenu = ({
   }
 
   async function handleEquipItem() {
-    const audio = new Audio("/src/assets/sounds/item-equip-6904.mp3");
-    audio.play();
+    PlayAudio("/src/assets/sounds/item-equip-6904.mp3");
     setContextMenu(null);
     try {
       await postWithAuth(`/heroe/equip-item/${inventory[index]?.id}`);
@@ -87,8 +87,7 @@ const ContextMenu = ({
   }
 
   async function handleUnequipItem() {
-    const audio = new Audio("/src/assets/sounds/item-equip-6904.mp3");
-    audio.play();
+    PlayAudio("/src/assets/sounds/item-equip-6904.mp3");
     setContextMenu(null);
     try {
       await postWithAuth(`/heroe/unequip-item/${inventory[index]?.id}`);
@@ -105,6 +104,7 @@ const ContextMenu = ({
   }
 
   async function handleDeleteItem() {
+    PlayAudio("/src/assets/sounds/DeleteItem.ogg");
     setContextMenu(null);
     try {
       await postWithAuth(

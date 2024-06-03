@@ -1,5 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import { getWithAuth } from "../api/api";
+import PlayAudio from "../utils/PlayAudio";
 
 const LoseStageModal = () => {
   const navigate = useNavigate();
@@ -10,9 +11,7 @@ const LoseStageModal = () => {
     navigate("/saves");
   };
 
-  const audio = new Audio("/src/assets/sounds/brass-shot-96185.ogg");
-  audio.volume = 0.2;
-  audio.play();
+  PlayAudio("/src/assets/sounds/brass-shot-96185.ogg", 0.2);
 
   return (
     <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center z-50">

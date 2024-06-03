@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { BASE_URL } from "../api/apiRequest";
+import PlayAudio from "../utils/PlayAudio";
 
 const AbilitiesSection = ({
   abilities,
@@ -12,16 +13,19 @@ const AbilitiesSection = ({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   function handleSelectedSkill(skill) {
+    PlayAudio("/src/assets/sounds/Cursor2.ogg");
     setSelectedSkill(skill);
     setSelectedAbility(skill);
   }
 
   function handleHoveredAbility(skill, event) {
+    
     setMousePosition({ x: event.clientX, y: event.clientY });
     setHoveredAbility(skill);
   }
 
   function handleMouseMove(event) {
+    
     setMousePosition({ x: event.clientX, y: event.clientY });
   }
 
@@ -29,7 +33,6 @@ const AbilitiesSection = ({
     setHoveredAbility(null);
   }
 
-  // Función para verificar si hay un arma que contenga "martillo" en su nombre
   function hasHammerWeapon() {
     return weapons.some((weapon) =>
       weapon.name.toLowerCase().includes("martillo")

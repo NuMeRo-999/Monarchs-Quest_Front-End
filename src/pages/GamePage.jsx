@@ -14,6 +14,7 @@ import { getWithAuth } from "../api/api";
 import WinStageModal from "../components/WinStageModal";
 import LoseStageModal from "../components/LoseStageModal";
 import { useAudio } from "../context/AudioContext";
+import PlayAudio from "../utils/PlayAudio";
 
 const GamePage = () => {
   const { gameId } = useParams();
@@ -39,13 +40,9 @@ const GamePage = () => {
     const audio = new Audio("/src/assets/music/GameTheme.ogg");
     audio.loop = true;
     audio.volume = 0.5;
-
-    const playAudio = () => {
-      audio.play().catch((error) => {});
-    };
-
+    
     setShouldPlay(false);
-    playAudio();
+    audio.play();
 
     return () => {
       audio.pause();
@@ -80,8 +77,7 @@ const GamePage = () => {
       if (selectedSkill && selectedEnemy) {
         try {
           setIsAttacking(true);
-          const audio = new Audio("/src/assets/sounds/sword-sound-2-36274.ogg");
-          audio.play();
+          PlayAudio("/src/assets/sounds/sword-sound-2-36274.ogg");
           await getWithAuth(
             `/heroe/attack/${heroe.id}/${selectedEnemy}/${selectedSkill.id}`
           ).then((response) => {
@@ -100,8 +96,7 @@ const GamePage = () => {
 
     const buffHeroe = async () => {
       if (selectedSkill && !selectedEnemy && selectedSkill.type === "Buff") {
-        const audio = new Audio("/src/assets/sounds/086161_pickups_shield_beltwav-81574.mp3");
-        audio.play();
+        PlayAudio("/src/assets/sounds/086161_pickups_shield_beltwav-81574.mp3");
         try {
           await getWithAuth(`/heroe/buff/${heroe.id}/${selectedSkill.id}`).then(
             (response) => {
@@ -124,8 +119,7 @@ const GamePage = () => {
         if (attackingEnemies.length > 0) {
           try {
             setIsAttacking(true);
-            const audio = new Audio("/src/assets/sounds/strong-hit-36455.ogg");
-            audio.play();
+            PlayAudio("/src/assets/sounds/strong-hit-36455.ogg");
             await getWithAuth(`/enemy/attack/${heroe.id}`).then((response) => {
               setHeroe(response.heroe);
               setSaves(response.saveSlot);

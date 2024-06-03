@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { postWithAuth } from "../api/api";
 import Spinner from "./Spinner";
+import PlayAudio from "../utils/PlayAudio";
 
 const EmptySaveCard = ({ fetchSaves }) => {
   const [creating, setCreating] = useState(false);
@@ -10,7 +11,8 @@ const EmptySaveCard = ({ fetchSaves }) => {
     if (!user || !user.token) {
       throw new Error("Token not found in localStorage");
     }
-
+    
+    PlayAudio("/src/assets/sounds/Select2.ogg")
     setCreating(true);
     postWithAuth(`/save/slot/create/${user.user_id}`)
       .then(() => {
@@ -32,6 +34,7 @@ const EmptySaveCard = ({ fetchSaves }) => {
           <button
             onClick={createSaveSlot}
             className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover h-12 w-[15.3rem] flex justify-center items-center text-white font-bold py-2 px-4 rounded"
+            onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
           >
             Crear
           </button>
