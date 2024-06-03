@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { getWithAuth } from "../api/api";
+import Spinner from "./Spinner";
 
 const RankingTable = () => {
   const [saves, setSaves] = useState([]);
@@ -50,53 +51,59 @@ const RankingTable = () => {
   }
 
   return (
-    <table className="w-4/5 bg-white border border-yellow-700 mb-10">
-      <thead className="bg-yellow-800 text-white">
-        <tr>
-          <th className="py-2 px-4">
-            <div className="flex flex-col gap-1 items-center justify-center">
-              <img src="/src/assets/icons/trophy-icon.png" className="size-8" alt="" />
-              <span>Posición</span>
-            </div>
-          </th>
-          <th className="py-2 px-4">
-            <div className="flex flex-col gap-1 items-center justify-center">
-              <img src="/src/assets/icons/head-icon.png" className="size-8" alt="" />
-              <span>Usuario</span>
-            </div>
-          </th>
-          <th className="py-2 px-4">
-            <div className="flex flex-col gap-1 items-center justify-center">
-              <img src="/src/assets/icons/door-icon.png" className="size-8" alt="" />
-              <span>Fase</span>
-            </div>
-          </th>
-          <th className="py-2 px-4">
-            <div className="flex flex-col gap-1 items-center justify-center">
-              <img src="/src/assets/images/skull_01a.png" className="size-8" alt="" />
-              <span>Muertes</span>
-            </div>
-          </th>
-          <th className="py-2 px-4">
-            <div className="flex flex-col gap-1 items-center justify-center">
-              <img src="/src/assets/images/coin_05d.png" className="size-8" alt="" />
-              <span>Dinero</span>
-            </div>
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-        {saves.map((save, index) => (
-          <tr className="text-center" key={save.id}>
-            <td className="py-2 px-4">{index + 1}</td>
-            <td className="py-2 px-4">{save.user[0].username}</td>
-            <td className="py-2 px-4">{save.stage[0].stage}</td>
-            <td className="py-2 px-4">{save.kills}</td>
-            <td className="py-2 px-4">{save.money}</td>
-          </tr>
-        ))}
-      </tbody>
-    </table>
+    <>
+      {saves.length === 0 ? (
+        <Spinner/>
+      ) : (
+        <table className="w-4/5 bg-white border border-yellow-700 mb-10">
+          <thead className="bg-yellow-800 text-white">
+            <tr>
+              <th className="py-2 px-4">
+                <div className="flex flex-col gap-1 items-center justify-center">
+                  <img src="/src/assets/icons/trophy-icon.png" className="size-8" alt="" />
+                  <span>Posición</span>
+                </div>
+              </th>
+              <th className="py-2 px-4">
+                <div className="flex flex-col gap-1 items-center justify-center">
+                  <img src="/src/assets/icons/head-icon.png" className="size-8" alt="" />
+                  <span>Usuario</span>
+                </div>
+              </th>
+              <th className="py-2 px-4">
+                <div className="flex flex-col gap-1 items-center justify-center">
+                  <img src="/src/assets/icons/door-icon.png" className="size-8" alt="" />
+                  <span>Fase</span>
+                </div>
+              </th>
+              <th className="py-2 px-4">
+                <div className="flex flex-col gap-1 items-center justify-center">
+                  <img src="/src/assets/images/skull_01a.png" className="size-8" alt="" />
+                  <span>Muertes</span>
+                </div>
+              </th>
+              <th className="py-2 px-4">
+                <div className="flex flex-col gap-1 items-center justify-center">
+                  <img src="/src/assets/images/coin_05d.png" className="size-8" alt="" />
+                  <span>Dinero</span>
+                </div>
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            {saves.map((save, index) => (
+              <tr className="text-center" key={save.id}>
+                <td className="py-2 px-4">{index + 1}</td>
+                <td className="py-2 px-4">{save.user[0].username}</td>
+                <td className="py-2 px-4">{save.stage[0].stage}</td>
+                <td className="py-2 px-4">{save.kills}</td>
+                <td className="py-2 px-4">{save.money}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      )}
+    </>
   );
 };
 
