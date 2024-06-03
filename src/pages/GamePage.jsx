@@ -119,7 +119,7 @@ const GamePage = () => {
     };
 
     const enemyAttack = async () => {
-      if (saves?.stage[0]?.state === 2) {
+      if (saves?.stage?.[0]?.state === 2) {
         const attackingEnemies = enemies.filter((enemy) => enemy.state === 1);
         if (attackingEnemies.length > 0) {
           try {
