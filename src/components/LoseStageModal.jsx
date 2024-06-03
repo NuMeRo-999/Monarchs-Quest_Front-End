@@ -10,6 +10,10 @@ const LoseStageModal = () => {
     navigate("/saves");
   };
 
+  const audio = new Audio("/src/assets/sounds/brass-shot-96185.ogg");
+  audio.volume = 0.2;
+  audio.play();
+
   return (
     <div className="fixed top-0 left-0 w-screen h-screen bg-black bg-opacity-50 flex justify-center items-center z-50">
       <div className="h-[500px] w-[905px] bg-[url('/src/assets/images/abilities-border.png')] bg-cover z-[51] font-pixelify flex flex-col justify-evenly items-center">

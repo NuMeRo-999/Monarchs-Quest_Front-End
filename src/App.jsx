@@ -8,6 +8,7 @@ import RegisterPage from "./pages/RegisterPage";
 import GamePage from "./pages/GamePage";
 import SavesPage from "./pages/SavesPage";
 import RankingPage from "./pages/RankingPage";
+import { AudioProvider } from "./context/AudioContext";
 
 function App() {
   document.body.style.cursor = "url('/src/assets/icons/sword_02b.png'), auto";
@@ -46,11 +47,13 @@ function App() {
     },
   ]);
   
-  return (
-    // <AuthProvider>
-      <RouterProvider router={router} />
-    // </AuthProvider>
-  );
-}
+    return (
+      // <AuthProvider>
+        <AudioProvider>
+          <RouterProvider router={router} />
+        </AudioProvider>
+      // </AuthProvider>
+    );
+  };
 
 export default App

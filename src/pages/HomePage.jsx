@@ -1,6 +1,18 @@
+import { useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useAudio } from "../context/AudioContext";
 
 const HomePage = () => {
+  const { isPlaying, audioRef } = useAudio();
+
+  useEffect(() => {
+    if (!isPlaying) {
+      audioRef.current.play().catch((error) => {
+        console.error("Error:", error);
+      });
+    }
+  }, [isPlaying, audioRef]);
+
   return (
     <div className="bg-auto font-pixelify size-screen bg-gradient ">
       <div className=" bg-[url('/src/assets/images/background.png')] bg-[length:150px_150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">

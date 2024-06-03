@@ -38,6 +38,8 @@ const WinStageModal = ({ setSaves, setEnemies, hasShownModalRef, setInventory })
 
   useEffect(() => {
     if (hasShownModalRef.current) {
+      const audio = new Audio("/src/assets/sounds/winharpsichord-39642.ogg");
+      audio.play();
       const fetchItems = async () => {
         try {
           const response = await getWithAuth(`/save/slot/add-items/${gameId}`);

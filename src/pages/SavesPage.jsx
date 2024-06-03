@@ -4,10 +4,12 @@ import BackButton from "../components/BackButton";
 import SaveCard from "../components/SaveCard";
 import EmptySaveCard from "../components/EmptySaveCard";
 import Loading from "../components/Loading";
+import { useAudio } from "../context/AudioContext";
 
 const SavesPage = () => {
   const [saves, setSaves] = useState([]);
   const [loading, setLoading] = useState(true);
+  const { isPlaying, audioRef } = useAudio();
 
   function fetchSaves() {
     getUserSaveSlots()
@@ -24,7 +26,12 @@ const SavesPage = () => {
 
   useEffect(() => {
     fetchSaves();
-  }, []);
+    if (!isPlaying) {
+      audioRef.current.play().catch((error) => {
+        console.error("Error:", error);
+      });
+    }
+  }, [isPlaying, audioRef]);
 
   return (
     <div className="bg-auto font-pixelify bg-gradient ">

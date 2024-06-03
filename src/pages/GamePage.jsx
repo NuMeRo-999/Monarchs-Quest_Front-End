@@ -13,9 +13,11 @@ import Enemies from "../components/Enemies";
 import { getWithAuth } from "../api/api";
 import WinStageModal from "../components/WinStageModal";
 import LoseStageModal from "../components/LoseStageModal";
+import { useAudio } from "../context/AudioContext";
 
 const GamePage = () => {
   const { gameId } = useParams();
+  const { setShouldPlay } = useAudio();
 
   const [abilities, setAbilities] = useState([]);
   const [enemies, setEnemies] = useState([]);
@@ -34,7 +36,29 @@ const GamePage = () => {
   const hasShownModalRef = useRef(false);
 
   useEffect(() => {
-    Promise.all([getSaveSlot(gameId), getWeaponsEquiped(gameId), getAmuletEquiped(gameId)])
+    const audio = new Audio("/src/assets/music/GameTheme.ogg");
+    audio.loop = true;
+    audio.volume = 0.5;
+
+    const playAudio = () => {
+      audio.play().catch((error) => {});
+    };
+
+    setShouldPlay(false);
+    playAudio();
+
+    return () => {
+      audio.pause();
+      setShouldPlay(true);
+    };
+  }, []);
+
+  useEffect(() => {
+    Promise.all([
+      getSaveSlot(gameId),
+      getWeaponsEquiped(gameId),
+      getAmuletEquiped(gameId),
+    ])
       .then(([saveData, weaponsData, amuletData]) => {
         setSaves(saveData);
         setAbilities(saveData.stage[0].heroes[0].abilities);
@@ -56,6 +80,8 @@ const GamePage = () => {
       if (selectedSkill && selectedEnemy) {
         try {
           setIsAttacking(true);
+          const audio = new Audio("/src/assets/sounds/sword-sound-2-36274.ogg");
+          audio.play();
           await getWithAuth(
             `/heroe/attack/${heroe.id}/${selectedEnemy}/${selectedSkill.id}`
           ).then((response) => {
@@ -74,6 +100,8 @@ const GamePage = () => {
 
     const buffHeroe = async () => {
       if (selectedSkill && !selectedEnemy && selectedSkill.type === "Buff") {
+        const audio = new Audio("/src/assets/sounds/086161_pickups_shield_beltwav-81574.mp3");
+        audio.play();
         try {
           await getWithAuth(`/heroe/buff/${heroe.id}/${selectedSkill.id}`).then(
             (response) => {
@@ -96,6 +124,8 @@ const GamePage = () => {
         if (attackingEnemies.length > 0) {
           try {
             setIsAttacking(true);
+            const audio = new Audio("/src/assets/sounds/strong-hit-36455.ogg");
+            audio.play();
             await getWithAuth(`/enemy/attack/${heroe.id}`).then((response) => {
               setHeroe(response.heroe);
               setSaves(response.saveSlot);
@@ -165,7 +195,7 @@ const GamePage = () => {
           </div>
 
           {heroe.healthPoints <= 0 && <LoseStageModal />}
-          
+
           {areAllEnemiesDead && (
             <WinStageModal
               setSaves={setSaves}

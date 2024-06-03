@@ -53,6 +53,8 @@ const ContextMenu = ({
   }, [contextMenu]);
 
   async function handleConsumeItem() {
+    const audio = new Audio("/src/assets/sounds/health-pickup-6860.ogg");
+    audio.play();
     setContextMenu(null);
     try {
       await postWithAuth(
@@ -67,6 +69,8 @@ const ContextMenu = ({
   }
 
   async function handleEquipItem() {
+    const audio = new Audio("/src/assets/sounds/item-equip-6904.mp3");
+    audio.play();
     setContextMenu(null);
     try {
       await postWithAuth(`/heroe/equip-item/${inventory[index]?.id}`);
@@ -83,6 +87,8 @@ const ContextMenu = ({
   }
 
   async function handleUnequipItem() {
+    const audio = new Audio("/src/assets/sounds/item-equip-6904.mp3");
+    audio.play();
     setContextMenu(null);
     try {
       await postWithAuth(`/heroe/unequip-item/${inventory[index]?.id}`);
