@@ -20,7 +20,7 @@ const Enemies = ({ enemies, setSelectedEnemy, selectedEnemy, isAttacking, stageI
         {enemies[0]?.state !== 0 && (
           <div className="bg-[url('/src/assets/images/level-health-bar.png')] bg-contain bg-bottom bg-no-repeat h-20">
             <p className="font-m04 text-sm text-white pt-[2.7rem] pl-[.8rem]">{enemies[0]?.level < 10 ? `0${enemies[0]?.level}` : enemies[0]?.level}</p>
-            <div className="bg-red-500 absolute top-[3.20rem] left-[3.3rem] h-2" style={{ width: `${(enemies[0]?.healthPoints / enemies[0]?.healthPoints) * maxHealthWidth}%`, transition: 'width 0.5s' }}></div>
+            <div className="bg-red-500 absolute top-[3.20rem] left-[3.3rem] h-2" style={{ width: `${(enemies[0]?.healthPoints / enemies[0]?.maxHealthPoints) * maxHealthWidth}%`, transition: 'width 0.5s' }}></div>
           </div>
         )}
       </div>
@@ -39,7 +39,7 @@ const Enemies = ({ enemies, setSelectedEnemy, selectedEnemy, isAttacking, stageI
         {enemies[1]?.state !== 0 && (
           <div className="bg-[url('/src/assets/images/level-health-bar.png')] bg-contain bg-bottom bg-no-repeat h-20">
             <p className="font-m04 text-sm text-white pt-[2.7rem] pl-[.8rem]">{enemies[1]?.level < 10 ? `0${enemies[1]?.level}` : enemies[1]?.level}</p>
-            <div className="bg-red-500 absolute top-[3.20rem] left-[3.3rem] h-2" style={{ width: `${(enemies[1]?.healthPoints / enemies[1]?.healthPoints) * maxHealthWidth}%`, transition: 'width 0.5s' }}></div>
+            <div className="bg-red-500 absolute max-w-32 top-[3.20rem] left-[3.3rem] h-2" style={{ width: `${(enemies[1]?.healthPoints / enemies[1]?.maxHealthPoints) * maxHealthWidth}%`, transition: 'width 0.5s' }}></div>
           </div>
         )}
       </div>
@@ -58,7 +58,7 @@ const Enemies = ({ enemies, setSelectedEnemy, selectedEnemy, isAttacking, stageI
         {enemies[2]?.state !== 0 && (
           <div className="bg-[url('/src/assets/images/level-health-bar.png')] bg-contain bg-bottom bg-no-repeat h-20">
             <p className="font-m04 text-sm text-white pt-[2.7rem] pl-[.8rem]">{enemies[2]?.level < 10 ? `0${enemies[2]?.level}` : enemies[2]?.level}</p>
-            <div className="bg-red-500 absolute top-[3.20rem] left-[3.3rem] h-2" style={{ width: `${(enemies[2]?.healthPoints / enemies[2]?.healthPoints) * maxHealthWidth}%`, transition: 'width 0.5s' }}></div>
+            <div className="bg-red-500 absolute max-w-32 top-[3.20rem] left-[3.3rem] h-2" style={{ width: `${(enemies[2]?.healthPoints / enemies[2]?.maxHealthPoints) * maxHealthWidth}%`, transition: 'width 0.5s' }}></div>
           </div>
         )}
       </div>
