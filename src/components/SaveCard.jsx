@@ -1,22 +1,8 @@
-import { useState } from "react";
 import { Link } from "react-router-dom";
-import { deleteWithAuth } from "../api/api";
 import Spinner from "./Spinner";
+import PlayAudio from "../utils/PlayAudio";
 
-const SaveCard = ({ save, saveId, fetchSaves }) => {
-  const [deleting, setDeleting] = useState(false);
-
-  async function deleteSaveSlot(saveSlotId) {
-    setDeleting(true);
-    try {
-      await deleteWithAuth(`/save/slot/${saveSlotId}`);
-      fetchSaves();
-    } catch (error) {
-      console.error("Error:", error);
-    } finally {
-      setDeleting(false);
-    }
-  }
+const SaveCard = ({ save, saveId, deleting, onDelete }) => {
 
   if (!save) {
     return null;
@@ -56,12 +42,15 @@ const SaveCard = ({ save, saveId, fetchSaves }) => {
             <Link
               to={`/game/${saveId}`}
               className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover h-12 w-[15.3rem] flex justify-center items-center text-white font-bold py-2 px-4 rounded"
+              onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
+              onClick={() => PlayAudio("/src/assets/sounds/Select2.ogg")}
             >
               Jugar
             </Link>
             <button
-              onClick={() => deleteSaveSlot(saveId)}
+              onClick={onDelete}
               className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover h-12 w-[15.3rem] flex justify-center items-center text-white font-bold py-2 px-4 rounded"
+              onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
             >
               Borrar
             </button>
