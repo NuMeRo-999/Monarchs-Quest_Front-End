@@ -28,7 +28,6 @@ const RegisterPage = () => {
 
       const data = await response.json();
       setUsers(data);
-      console.log(data);
     } catch (error) {
       console.error("Error:", error);
       throw error;
