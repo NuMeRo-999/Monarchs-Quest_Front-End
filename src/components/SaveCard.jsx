@@ -48,7 +48,10 @@ const SaveCard = ({ save, saveId, deleting, onDelete }) => {
               Jugar
             </Link>
             <button
-              onClick={onDelete}
+              onClick={() => {
+                onDelete();
+                PlayAudio("/src/assets/sounds/Select2.ogg");
+              }}
               className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover h-12 w-[15.3rem] flex justify-center items-center text-white font-bold py-2 px-4 rounded"
               onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
             >

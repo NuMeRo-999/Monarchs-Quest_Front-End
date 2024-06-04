@@ -3,17 +3,16 @@ import ErrorPage from "./pages/ErrorPage";
 import ProtectedRoute from "./utils/ProtectedRoute";
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
-import { useState } from "react";
 import RegisterPage from "./pages/RegisterPage";
 import GamePage from "./pages/GamePage";
 import SavesPage from "./pages/SavesPage";
 import RankingPage from "./pages/RankingPage";
 import { AudioProvider } from "./context/AudioContext";
+import { AuthContextProvider, AuthContext } from "./context/AuthContext";
+import { useContext } from "react";
 
 function App() {
   document.body.style.cursor = "url('/src/assets/icons/sword_02b.png'), auto";
-  
-  const [logged, setLogged] = useState(false)
 
   const router = createBrowserRouter([
     {
@@ -21,7 +20,7 @@ function App() {
       errorElement: <ErrorPage />,
       children: [
         {
-          element: <ProtectedRoute isActive={true} redirectPath="/login" />,
+          element: <ProtectedRouteWithAuth />,
           children: [
             {
               index: true,
@@ -46,14 +45,20 @@ function App() {
       ],
     },
   ]);
-  
-    return (
-      // <AuthProvider>
-        <AudioProvider>
-          <RouterProvider router={router} />
-        </AudioProvider>
-      // </AuthProvider>
-    );
-  };
 
-export default App
+  return (
+    <AuthContextProvider>
+      <AudioProvider>
+        <RouterProvider router={router} />
+      </AudioProvider>
+    </AuthContextProvider>
+  );
+}
+
+const ProtectedRouteWithAuth = () => {
+  const { isLoggedIn } = useContext(AuthContext);
+
+  return <ProtectedRoute isActive={isLoggedIn} redirectPath="/login" />;
+};
+
+export default App;

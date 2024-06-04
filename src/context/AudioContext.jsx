@@ -14,10 +14,10 @@ export const AudioProvider = ({ children }) => {
   useEffect(() => {
     audioRef.current = new Audio("/src/assets/music/MenuTheme.ogg");
     audioRef.current.loop = true;
-    audioRef.current.volume = 0.5;
+    audioRef.current.volume = 0.4;
 
     const playAudio = () => {
-      if (shouldPlay) { // Controla si se debe reproducir
+      if (shouldPlay) {
         audioRef.current.play().then(() => {
           setIsPlaying(true);
         }).catch((error) => {
@@ -32,10 +32,10 @@ export const AudioProvider = ({ children }) => {
       audioRef.current.pause();
       setIsPlaying(false);
     };
-  }, [shouldPlay]); // Actualiza el efecto cuando shouldPlay cambie
+  }, [shouldPlay]);
 
   return (
-    <AudioContext.Provider value={{ audioRef, isPlaying, setShouldPlay }}> {/* Agrega setShouldPlay */}
+    <AudioContext.Provider value={{ audioRef, isPlaying, setShouldPlay }}>
       {children}
     </AudioContext.Provider>
   );

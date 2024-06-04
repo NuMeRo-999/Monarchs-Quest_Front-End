@@ -1,28 +1,30 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { login } from "../api/apiRequest";
+import { login as apiLogin } from "../api/apiRequest";
 import ErrorModal from "../components/ErrorModal";
 import Spinner from "../components/Spinner";
 import PlayAudio from "../utils/PlayAudio";
+import { AuthContext } from "../context/AuthContext";
 
 const LoginPage = () => {
   const [username, setUser] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  // const { login } = useAuthContext();
+  const { login } = useContext(AuthContext);
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
   async function handleSubmit(e) {
     e.preventDefault();
-    PlayAudio("/src/assets/sounds/Select2.ogg")
+    PlayAudio("/src/assets/sounds/Select2.ogg");
     try {
       setLoading(true);
-      const response = await login("/api/login", { username, password });
+      const response = await apiLogin("/api/login", { username, password });
       setLoading(false);
 
       if (response.code === 200) {
+        login();
         navigate("/");
       } else {
         PlayAudio("/src/assets/sounds/Error1.ogg");
@@ -30,6 +32,8 @@ const LoginPage = () => {
       }
     } catch (error) {
       console.error("Login failed:", error);
+      setLoading(false);
+      setError("Ocurrió un error al intentar iniciar sesión");
     }
   }
 
@@ -82,12 +86,11 @@ const LoginPage = () => {
                   className="absolute inset-y-0 right-0 pr-2 flex items-center"
                   onClick={toggleShowPassword}
                 >
-                  {" "}
                   {showPassword ? (
                     <i className="fas fa-eye-slash"></i>
                   ) : (
                     <i className="fas fa-eye"></i>
-                  )}{" "}
+                  )}
                 </button>
               </div>
               <div className="flex flex-col justify-center items-center gap-5 mt-5">
@@ -121,4 +124,5 @@ const LoginPage = () => {
     </div>
   );
 };
+
 export default LoginPage;
