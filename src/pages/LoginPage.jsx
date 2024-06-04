@@ -48,7 +48,7 @@ const LoginPage = () => {
           <ErrorModal />
           <img
             className="w-96"
-            src="/src/assets/images/MonarchQuest.png"
+            src="src/assets/images/MonarchQuest.png"
             alt=""
           />
           {error ? (

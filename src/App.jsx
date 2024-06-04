@@ -58,7 +58,7 @@ function App() {
 const ProtectedRouteWithAuth = () => {
   const { isLoggedIn } = useContext(AuthContext);
 
-  return <ProtectedRoute isActive={isLoggedIn} redirectPath="/login" />;
+  return <ProtectedRoute isActive={true} redirectPath="/login" />;
 };
 
 export default App;
