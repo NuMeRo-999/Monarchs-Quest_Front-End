@@ -94,10 +94,10 @@ const RankingTable = () => {
             {saves.map((save, index) => (
               <tr className="text-center" key={save.id}>
                 <td className="py-2 px-4">{index + 1}</td>
-                <td className="py-2 px-4">{save.user[0].username}</td>
-                <td className="py-2 px-4">{save.stage[0].stage}</td>
-                <td className="py-2 px-4">{save.kills}</td>
-                <td className="py-2 px-4">{save.money}</td>
+                <td className="py-2 px-4">{save?.user[0]?.username}</td>
+                <td className="py-2 px-4">{save?.stage[0]?.stage}</td>
+                <td className="py-2 px-4">{save?.kills}</td>
+                <td className="py-2 px-4">{save?.money}</td>
               </tr>
             ))}
           </tbody>

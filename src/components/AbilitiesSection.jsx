@@ -65,7 +65,7 @@ const AbilitiesSection = ({
                   src={`${BASE_URL}/img/${ability?.imageFilename}`}
                   alt=""
                   className={`size-10 image-cursor rounded-md border-white box-border hover:scale-105 transition-transform duration-300 ease-in-out ${
-                    selectedSkill && selectedAbility === ability
+                    selectedSkill && Object.keys(selectedSkill).length > 0 && selectedAbility === ability
                       ? "border-2 "
                       : ""
                   }`}

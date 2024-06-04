@@ -29,7 +29,7 @@ const GamePage = () => {
   const [inventory, setInventory] = useState([]);
   const [loading, setLoading] = useState(true);
 
-  const [selectedSkill, setSelectedSkill] = useState([]);
+  const [selectedSkill, setSelectedSkill] = useState({});
   const [selectedEnemy, setSelectedEnemy] = useState(null);
   const [isAttacking, setIsAttacking] = useState(false);
 
@@ -74,7 +74,7 @@ const GamePage = () => {
 
   useEffect(() => {
     const attackHeroe = async () => {
-      if (selectedSkill && selectedEnemy) {
+      if ( selectedSkill && Object.keys(selectedSkill).length > 0 && selectedSkill.type === "Attack" && selectedEnemy) {
         try {
           setIsAttacking(true);
           PlayAudio("/src/assets/sounds/sword-sound-2-36274.ogg");
@@ -87,7 +87,7 @@ const GamePage = () => {
         } catch (error) {
           console.error("Error:", error);
         } finally {
-          setSelectedSkill(null);
+          setSelectedSkill({});
           setSelectedEnemy(null);
           setIsAttacking(false);
         }
@@ -95,7 +95,7 @@ const GamePage = () => {
     };
 
     const buffHeroe = async () => {
-      if (selectedSkill && !selectedEnemy && selectedSkill.type === "Buff") {
+      if (selectedSkill && Object.keys(selectedSkill).length > 0 && selectedSkill.type === "Buff") {
         PlayAudio("/src/assets/sounds/086161_pickups_shield_beltwav-81574.mp3");
         try {
           await getWithAuth(`/heroe/buff/${heroe.id}/${selectedSkill.id}`).then(
