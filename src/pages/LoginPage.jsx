@@ -31,7 +31,6 @@ const LoginPage = () => {
         setError("Usuario o contraseña incorrectos");
       }
     } catch (error) {
-      console.error("Login failed:", error);
       setLoading(false);
       setError("Ocurrió un error al intentar iniciar sesión");
     }

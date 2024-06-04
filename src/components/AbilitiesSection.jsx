@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { BASE_URL } from "../api/apiRequest";
 import PlayAudio from "../utils/PlayAudio";
+import { BASE_URL } from "../api/api";
 
 const AbilitiesSection = ({
   abilities,

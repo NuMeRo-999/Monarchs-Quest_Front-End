@@ -1,4 +1,4 @@
-import { BASE_URL } from '../api/apiRequest'
+import { BASE_URL } from "../api/api";
 
 const PlayerSection = ({heroe}) => {
 

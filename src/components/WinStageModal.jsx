@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getWithAuth } from "../api/api";
-import { BASE_URL, getInventory, getSaveSlot } from "../api/apiRequest";
+import { getWithAuth, BASE_URL } from "../api/api";
+import { getInventory, getSaveSlot } from "../api/apiRequest";
 import Spinner from "./Spinner";
 import PlayAudio from "../utils/PlayAudio";
 

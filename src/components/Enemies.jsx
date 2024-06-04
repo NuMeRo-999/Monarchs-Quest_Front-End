@@ -1,4 +1,4 @@
-import { BASE_URL } from "../api/apiRequest";
+import { BASE_URL } from "../api/api";
 import PlayAudio from "../utils/PlayAudio";
 
 const Enemies = ({ enemies, setSelectedEnemy, selectedEnemy, isAttacking, stageId }) => {

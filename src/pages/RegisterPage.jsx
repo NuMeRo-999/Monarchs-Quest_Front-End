@@ -1,7 +1,8 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login } from "../api/apiRequest";
 import PlayAudio from "../utils/PlayAudio";
+import { BASE_URL } from "../api/api";
 
 const RegisterPage = () => {
   const [username, setUser] = useState("");
@@ -10,7 +11,29 @@ const RegisterPage = () => {
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
+  const [users, setUsers] = useState([]);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    getUsers();
+  }, []);
+
+  async function getUsers() {
+    try {
+      const response = await fetch(`${BASE_URL}/user`);
+
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+
+      const data = await response.json();
+      setUsers(data);
+      console.log(data);
+    } catch (error) {
+      console.error("Error:", error);
+      throw error;
+    }
+  }
 
   async function handleSubmit(e) {
     e.preventDefault();
@@ -61,6 +84,13 @@ const RegisterPage = () => {
     if (password !== password2) {
       PlayAudio("/src/assets/sounds/Error1.ogg");
       setError("Las contraseñas no coinciden");
+      return false;
+    }
+
+    const userExists = users.some(user => user.username === username);
+    if (userExists) {
+      PlayAudio("/src/assets/sounds/Error1.ogg");
+      setError("El nombre de usuario ya está en uso");
       return false;
     }
 

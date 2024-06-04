@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { getWithAuth } from "../api/api";
-import { BASE_URL } from "../api/apiRequest";
+import { BASE_URL } from "../api/api";
 import Spinner from "./Spinner";
 import CloseModalButton from "./CloseModalButton";
 import PlayAudio from "../utils/PlayAudio";

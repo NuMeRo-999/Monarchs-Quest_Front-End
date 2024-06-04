@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import {
-  BASE_URL,
   getAmuletEquiped,
   getSaveSlot,
   getWeaponsEquiped,
 } from "../api/apiRequest";
 import ItemDetail from "./ItemDetail";
-import { postWithAuth } from "../api/api";
+import { BASE_URL, postWithAuth } from "../api/api";
 import { useParams } from "react-router-dom";
 import PlayAudio from "../utils/PlayAudio";
 

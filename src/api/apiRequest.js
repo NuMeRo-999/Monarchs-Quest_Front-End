@@ -1,6 +1,5 @@
-import { getWithAuth } from "./api";
+import { BASE_URL, getWithAuth } from "./api";
 
-export const BASE_URL = "http://127.0.0.1:8000";
 
 export async function login(url, userData) {
   try {
