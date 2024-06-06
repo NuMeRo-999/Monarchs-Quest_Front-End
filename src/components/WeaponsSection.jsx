@@ -8,7 +8,7 @@ const WeaponsSection = ({weapons}) => {
             return (
               <div
                 key={index}
-                className="bg-[url('/src/assets/images/weapon-inner-border.png')] bg-cover w-[4.4rem] h-36 flex justify-center items-center p-[1.35rem]"
+                className="bg-[url('/images/weapon-inner-border.png')] bg-cover w-[4.4rem] h-36 flex justify-center items-center p-[1.35rem]"
               >
                 {weapons[index] ? (
                   <img src={`${BASE_URL}/img/${weapons[index]?.image}`} alt="" className={`${weapons[index]?.image.includes('shield') || weapons[index]?.image.includes('dagger') ? 'h-1/2 w-full ' : 'size-full'}  image-cursor`}/>

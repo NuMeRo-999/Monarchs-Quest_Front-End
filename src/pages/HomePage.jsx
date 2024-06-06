@@ -18,13 +18,13 @@ const HomePage = () => {
 
   return (
     <div className="bg-auto font-pixelify size-screen bg-gradient ">
-      <div className=" bg-[url('/src/assets/images/background.png')] bg-[length:150px_150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
+      <div className=" bg-[url('/images/background.png')] bg-[length:150px_150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
         <div className="bg-gradient-2"></div>
-        <div className="bg-[url('/src/assets/images/home.png')] bg-cover h-4/5 w-1/2 flex flex-col justify-center z-10">
+        <div className="bg-[url('/images/home.png')] bg-cover h-4/5 w-1/2 flex flex-col justify-center z-10">
           <div className="flex flex-col justify-center items-center">
             <img
               className="w-72"
-              src="/src/assets/images/MonarchQuest.png"
+              src="/images/MonarchQuest.png"
               alt=""
             />
 
@@ -32,27 +32,27 @@ const HomePage = () => {
               <Link
                 to={"/saves"}
                 type="submit"
-                className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover leading-4 text-2xl h-[2.55rem] text-white w-52 flex justify-center items-center"
-                onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
-                onClick={() => PlayAudio("/src/assets/sounds/Select2.ogg")}
+                className="image-cursor bg-[url('/images/button.png')] bg-cover leading-4 text-2xl h-[2.55rem] text-white w-52 flex justify-center items-center"
+                onMouseEnter={() => PlayAudio("/sounds/Cursor1.ogg")}
+                onClick={() => PlayAudio("/sounds/Select2.ogg")}
               >
                 Jugar
               </Link>
               <Link
                 to={"/ranking"}
                 type="submit"
-                className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover leading-4 text-2xl h-[2.55rem] text-white w-52 flex justify-center items-center"
-                onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
-                onClick={() => PlayAudio("/src/assets/sounds/Select2.ogg")}
+                className="image-cursor bg-[url('/images/button.png')] bg-cover leading-4 text-2xl h-[2.55rem] text-white w-52 flex justify-center items-center"
+                onMouseEnter={() => PlayAudio("/sounds/Cursor1.ogg")}
+                onClick={() => PlayAudio("/sounds/Select2.ogg")}
               >
                 Ranking
               </Link>
               <Link
                 to={"/login"}
-                className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover leading-4 text-2xl h-[2.55rem] text-white w-52 flex justify-center items-center"
-                onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
+                className="image-cursor bg-[url('/images/button.png')] bg-cover leading-4 text-2xl h-[2.55rem] text-white w-52 flex justify-center items-center"
+                onMouseEnter={() => PlayAudio("/sounds/Cursor1.ogg")}
                 onClick={() => {
-                  PlayAudio("/src/assets/sounds/Select2.ogg");
+                  PlayAudio("/sounds/Select2.ogg");
                   logout();
                 }}
               >
@@ -70,11 +70,11 @@ const HomePage = () => {
                   href="https://github.com/NuMeRo-999"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
+                  onMouseEnter={() => PlayAudio("/sounds/Cursor1.ogg")}
                 >
                   <img
                     className="size-10"
-                    src="src/assets/images/github-icon.png"
+                    src="/images/github-icon.png"
                     alt=""
                   />
                 </a>
@@ -82,11 +82,11 @@ const HomePage = () => {
                   href="https://www.linkedin.com/in/pedro-vílchez-peña-4669292b0/"
                   target="_blank"
                   rel="noopener noreferrer"
-                  onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
+                  onMouseEnter={() => PlayAudio("/sounds/Cursor1.ogg")}
                 >
                   <img
                     className="size-10"
-                    src="src/assets/images/linkedin-icon.png"
+                    src="/images/linkedin-icon.png"
                     alt=""
                   />
                 </a>

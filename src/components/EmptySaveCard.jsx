@@ -12,7 +12,7 @@ const EmptySaveCard = ({ fetchSaves }) => {
       throw new Error("Token not found in localStorage");
     }
     
-    PlayAudio("/src/assets/sounds/Select2.ogg")
+    PlayAudio("/sounds/Select2.ogg")
     setCreating(true);
     postWithAuth(`/save/slot/create/${user.user_id}`)
       .then(() => {
@@ -33,8 +33,8 @@ const EmptySaveCard = ({ fetchSaves }) => {
           <h2>Vacío</h2>
           <button
             onClick={createSaveSlot}
-            className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover h-12 w-[15.3rem] flex justify-center items-center text-white font-bold py-2 px-4 rounded"
-            onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
+            className="image-cursor bg-[url('/images/button.png')] bg-cover h-12 w-[15.3rem] flex justify-center items-center text-white font-bold py-2 px-4 rounded"
+            onMouseEnter={() => PlayAudio("/sounds/Cursor1.ogg")}
           >
             Crear
           </button>

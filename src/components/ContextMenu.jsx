@@ -24,7 +24,7 @@ const ContextMenu = ({
 
   function handleContextMenu(e, index) {
     e.preventDefault();
-    PlayAudio("/src/assets/sounds/Select1.ogg");
+    PlayAudio("/sounds/Select1.ogg");
     setContextMenu({
       index: index,
       position: { top: 60, left: 60 },
@@ -54,7 +54,7 @@ const ContextMenu = ({
   }, [contextMenu]);
 
   async function handleConsumeItem() {
-    PlayAudio("/src/assets/sounds/health-pickup-6860.ogg");
+    PlayAudio("/sounds/health-pickup-6860.ogg");
     setContextMenu(null);
     try {
       await postWithAuth(
@@ -69,7 +69,7 @@ const ContextMenu = ({
   }
 
   async function handleEquipItem() {
-    PlayAudio("/src/assets/sounds/item-equip-6904.mp3");
+    PlayAudio("/sounds/item-equip-6904.mp3");
     setContextMenu(null);
     try {
       await postWithAuth(`/heroe/equip-item/${inventory[index]?.id}`);
@@ -86,7 +86,7 @@ const ContextMenu = ({
   }
 
   async function handleUnequipItem() {
-    PlayAudio("/src/assets/sounds/item-equip-6904.mp3");
+    PlayAudio("/sounds/item-equip-6904.mp3");
     setContextMenu(null);
     try {
       await postWithAuth(`/heroe/unequip-item/${inventory[index]?.id}`);
@@ -103,7 +103,7 @@ const ContextMenu = ({
   }
 
   async function handleDeleteItem() {
-    PlayAudio("/src/assets/sounds/DeleteItem.ogg");
+    PlayAudio("/sounds/DeleteItem.ogg");
     setContextMenu(null);
     try {
       await postWithAuth(
@@ -141,12 +141,12 @@ const ContextMenu = ({
       ) : (
         <div
           key={index}
-          className="bg-[url('/src/assets/images/inventory-slot-1.png')] bg-cover size-20 flex justify-center items-center"
+          className="bg-[url('/images/inventory-slot-1.png')] bg-cover size-20 flex justify-center items-center"
         ></div>
       )}
       {contextMenu && contextMenu.index === index && (
         <div
-          className="context-menu absolute bg-[url('/src/assets/images/menu-context.png')] z-50 bg-cover p-3 h-36 w-52 flex flex-col justify-center items-center box-border text-white"
+          className="context-menu absolute bg-[url('/images/menu-context.png')] z-50 bg-cover p-3 h-36 w-52 flex flex-col justify-center items-center box-border text-white"
           style={{
             top: contextMenu.position.top,
             left: contextMenu.position.left,

@@ -12,7 +12,7 @@ import { AuthContextProvider, AuthContext } from "./context/AuthContext";
 import { useContext } from "react";
 
 function App() {
-  document.body.style.cursor = "url('/src/assets/icons/sword_02b.png'), auto";
+  document.body.style.cursor = "url('/icons/sword_02b.png'), auto";
 
   const router = createBrowserRouter([
     {

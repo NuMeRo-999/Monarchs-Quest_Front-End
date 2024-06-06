@@ -14,14 +14,14 @@ const Heroe = ({ heroe, weapons, isAttacking, stageId }) => {
         <>
           <div>
             <img
-              src={`/src/assets/images/mano-der.png`}
+              src={`/images/mano-der.png`}
               alt=""
               className="item-animation pt-24"
             />
           </div>
           <div>
             <img
-              src={`/src/assets/images/mano-izq.png`}
+              src={`/images/mano-izq.png`}
               alt=""
               className="item-animation pt-24"
             />
@@ -44,7 +44,7 @@ const Heroe = ({ heroe, weapons, isAttacking, stageId }) => {
       )}
       {weapons.length == 1 && (
         <div>
-          <img src={`/src/assets/images/mano-izq.png`} alt="" className="item-animation w-12 pt-24" />
+          <img src={`/images/mano-izq.png`} alt="" className="item-animation w-12 pt-24" />
         </div>
       )}
     </div>

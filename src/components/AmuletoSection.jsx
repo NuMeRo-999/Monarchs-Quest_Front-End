@@ -9,7 +9,7 @@ const AmuletoSection = ({ amulet }) => {
           return (
             <div
               key={index}
-              className="bg-[url('/src/assets/images/inventory-slot-1.png')] bg-cover size-20 flex justify-center items-center"
+              className="bg-[url('/images/Inventory-slot-1.png')] bg-cover size-20 flex justify-center items-center"
             >
               {amulet[index] ? (
                 <img
@@ -18,7 +18,7 @@ const AmuletoSection = ({ amulet }) => {
                   className="size-10 image-cursor rounded"
                 />
               ) : (
-                <div className="bg-[url('/src/assets/images/inventory-slot-10.png')] size-20 bg-cover p-6"></div>
+                <div className="bg-[url('/images/Inventory-slot-10.png')] size-20 bg-cover p-6"></div>
               )}
             </div>
           );

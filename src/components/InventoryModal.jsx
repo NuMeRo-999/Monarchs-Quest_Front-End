@@ -24,9 +24,9 @@ const InventoryModal = ({ saves, setHeroe, setAmulet, setWeapons, inventory, set
   return (
     <>
       <button
-        className="image-cursor leading-4 text-2xl bg-[url('/src/assets/images/button.png')] bg-cover h-10 text-white w-52 text-center pt-2 font-bold py-2 px-4"
-        onClick={() => { setShowModal(true); PlayAudio("/src/assets/sounds/Select2.ogg"); }}
-        onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
+        className="image-cursor leading-4 text-2xl bg-[url('/images/button.png')] bg-cover h-10 text-white w-52 text-center pt-2 font-bold py-2 px-4"
+        onClick={() => { setShowModal(true); PlayAudio("/sounds/Select2.ogg"); }}
+        onMouseEnter={() => PlayAudio("/sounds/Cursor1.ogg")}
       >
         Inventario
       </button>
@@ -36,7 +36,7 @@ const InventoryModal = ({ saves, setHeroe, setAmulet, setWeapons, inventory, set
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-40 outline-none focus:outline-none">
             <div className="relative flex items-center justify-center">
               <CloseModalButton setShowModal={setShowModal} />
-              <div className="bg-[url('/src/assets/images/Inventory.png')] bg-cover w-[80vw] h-[77.7vh] grid grid-cols-10 p-20 z-20 text-3xl justify-center">
+              <div className="bg-[url('/images/Inventory.png')] bg-cover w-[80vw] h-[77.7vh] grid grid-cols-10 p-20 z-20 text-3xl justify-center">
                 {loading ? (
                   <div className="flex justify-center items-center col-span-10">
                     <Spinner />
@@ -46,7 +46,7 @@ const InventoryModal = ({ saves, setHeroe, setAmulet, setWeapons, inventory, set
                     <div
                       key={inventory[index]?.id}
                       id={inventory[index]?.id}
-                      className="bg-[url('/src/assets/images/inventory-slot-1.png')] bg-cover size-20 flex justify-center items-center relative"
+                      className="bg-[url('/images/Inventory-slot-1.png')] bg-cover size-20 flex justify-center items-center relative"
                     >
                       <ContextMenu
                         inventory={inventory}

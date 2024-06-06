@@ -6,12 +6,12 @@ const CloseModalButton = ({ setShowModal }) => {
       <span
         onClick={() => {
           setShowModal(false);
-          PlayAudio("/src/assets/sounds/PopupClose.ogg");
+          PlayAudio("/sounds/PopupClose.ogg");
         }}
         className="text-3xl top-10 right-10 absolute z-[41]"
       >
         <img
-          src="/src/assets/icons/close-icon.png"
+          src="/icons/close-icon.png"
           alt=""
           className="size-10"
         />

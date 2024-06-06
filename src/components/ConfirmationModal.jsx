@@ -9,7 +9,7 @@ const ConfirmationModal = ({
   fetchSaves,
 }) => {
   async function deleteSaveSlot(saveSlotId) {
-    PlayAudio("/src/assets/sounds/Select2.ogg");
+    PlayAudio("/sounds/Select2.ogg");
     setDeleting(true);
     try {
       await deleteWithAuth(`/save/slot/${saveSlotId}`);
@@ -25,25 +25,25 @@ const ConfirmationModal = ({
     showModal && (
       <>
         <div className="justify-center items-center flex overflow-x-hidden bg-cover overflow-y-auto fixed inset-0 z-[20] outline-none focus:outline-none">
-          <div className="relative flex flex-col items-center justify-center bg-[url('/src/assets/images/confirmation-modal.png')] bg-cover w-[40rem] h-[29.2rem] gap-5">
+          <div className="relative flex flex-col items-center justify-center bg-[url('/images/confirmation-modal.png')] bg-cover w-[40rem] h-[29.2rem] gap-5">
             <h2 className="text-4xl max-w-96 text-center">¿Estás seguro?</h2>
             <div className="flex flex-col items-center justify-center gap-5">
               <div className="flex justify-between gap-8">
                 <button
-                  className="image-cursor leading-4 text-2xl bg-[url('/src/assets/images/button.png')] bg-cover h-10 text-white w-52 text-center pt-2 font-bold py-2 px-4"
+                  className="image-cursor leading-4 text-2xl bg-[url('/images/button.png')] bg-cover h-10 text-white w-52 text-center pt-2 font-bold py-2 px-4"
                   onClick={() => {
                     setShowModal(false);
                     deleteSaveSlot(saveId);
-                    PlayAudio("/src/assets/sounds/DeleteItem.ogg");
+                    PlayAudio("/sounds/DeleteItem.ogg");
                   }}
                 >
                   Sí
                 </button>
                 <button
-                  className="image-cursor leading-4 text-2xl bg-[url('/src/assets/images/button.png')] bg-cover h-10 text-white w-52 text-center pt-2 font-bold py-2 px-4"
+                  className="image-cursor leading-4 text-2xl bg-[url('/images/button.png')] bg-cover h-10 text-white w-52 text-center pt-2 font-bold py-2 px-4"
                   onClick={() => {
                     setShowModal(false);
-                    PlayAudio("/src/assets/sounds/Select2.ogg");
+                    PlayAudio("/sounds/Select2.ogg");
                   }}
                 >
                   No

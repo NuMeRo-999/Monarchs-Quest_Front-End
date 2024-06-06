@@ -37,7 +37,7 @@ const GamePage = () => {
   const hasShownModalRef = useRef(false);
 
   useEffect(() => {
-    const audio = new Audio("/src/assets/music/GameTheme.ogg");
+    const audio = new Audio("/music/GameTheme.ogg");
     audio.loop = true;
     audio.volume = 0.5;
     
@@ -77,7 +77,7 @@ const GamePage = () => {
       if ( selectedSkill && Object.keys(selectedSkill).length > 0 && selectedSkill.type === "Attack" && selectedEnemy) {
         try {
           setIsAttacking(true);
-          PlayAudio("/src/assets/sounds/sword-sound-2-36274.ogg");
+          PlayAudio("/sounds/sword-sound-2-36274.ogg");
           await getWithAuth(
             `/heroe/attack/${heroe.id}/${selectedEnemy}/${selectedSkill.id}`
           ).then((response) => {
@@ -96,7 +96,7 @@ const GamePage = () => {
 
     const buffHeroe = async () => {
       if (selectedSkill && Object.keys(selectedSkill).length > 0 && selectedSkill.type === "Buff") {
-        PlayAudio("/src/assets/sounds/086161_pickups_shield_beltwav-81574.mp3");
+        PlayAudio("/sounds/086161_pickups_shield_beltwav-81574.mp3");
         try {
           await getWithAuth(`/heroe/buff/${heroe.id}/${selectedSkill.id}`).then(
             (response) => {
@@ -119,7 +119,7 @@ const GamePage = () => {
         if (attackingEnemies.length > 0) {
           try {
             setIsAttacking(true);
-            PlayAudio("/src/assets/sounds/strong-hit-36455.ogg");
+            PlayAudio("/sounds/strong-hit-36455.ogg");
             await getWithAuth(`/enemy/attack/${heroe.id}`).then((response) => {
               setHeroe(response.heroe);
               setSaves(response.saveSlot);
@@ -156,7 +156,7 @@ const GamePage = () => {
     <>
       {loading ? (
         <div className="bg-auto font-pixel size-screen bg-gradient">
-          <div className=" bg-[url('/src/assets/images/background.png')] bg-[length:150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
+          <div className=" bg-[url('/images/background.png')] bg-[length:150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
             <div className="h-screen w-screen font-pixelify flex justify-center items-center">
               <Loading />
             </div>
@@ -172,7 +172,7 @@ const GamePage = () => {
             inventory={inventory}
             setInventory={setInventory}
           />
-          <div className="bg-[url(/src/assets/images/game-background.png)] bg-cover h-[57.5vh]">
+          <div className="bg-[url(/images/game-background.png)] bg-cover h-[57.5vh]">
             <Heroe
               heroe={heroe}
               weapons={weapons}

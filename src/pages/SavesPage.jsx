@@ -45,7 +45,7 @@ const SavesPage = () => {
   return (
     <div className="bg-auto font-pixelify bg-gradient ">
       <BackButton link="/" />
-      <div className="bg-[url('/src/assets/images/background.png')] bg-[length:150px] bg-animation h-full w-screen flex flex-wrap justify-center items-center gap-10 xl:h-screen">
+      <div className="bg-[url('/images/background.png')] bg-[length:150px] bg-animation h-full w-screen flex flex-wrap justify-center items-center gap-10 xl:h-screen">
         <div className="bg-gradient-2 h-full"></div>
         {loading ? (
           <Loading />
@@ -55,7 +55,7 @@ const SavesPage = () => {
             return (
               <div
                 key={index}
-                className="bg-[url('/src/assets/images/save-slot.png')] bg-cover w-96 h-[33rem] flex flex-col justify-center z-10 p-20 text-3xl"
+                className="bg-[url('/images/save-slot.png')] bg-cover w-96 h-[33rem] flex flex-col justify-center z-10 p-20 text-3xl"
               >
                 <div className="flex flex-col justify-center items-center gap-2">
                   {save ? (

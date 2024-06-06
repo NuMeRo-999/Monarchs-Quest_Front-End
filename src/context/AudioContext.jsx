@@ -12,7 +12,7 @@ export const AudioProvider = ({ children }) => {
   const [shouldPlay, setShouldPlay] = useState(true); // Nuevo estado
 
   useEffect(() => {
-    audioRef.current = new Audio("/src/assets/music/MenuTheme.ogg");
+    audioRef.current = new Audio("/music/MenuTheme.ogg");
     audioRef.current.loop = true;
     audioRef.current.volume = 0.4;
 

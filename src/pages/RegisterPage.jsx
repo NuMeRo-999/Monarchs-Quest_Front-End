@@ -36,18 +36,18 @@ const RegisterPage = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    PlayAudio("/src/assets/sounds/Select2.ogg");
+    PlayAudio("/sounds/Select2.ogg");
     if (validateForm()) {
       try {
         const response = await login("/register", { username, password });
         if (response.code === 200) {
           navigate("/login");
         } else {
-          PlayAudio("/src/assets/sounds/Error1.ogg");
+          PlayAudio("/sounds/Error1.ogg");
           setError("Registro fallido. Intente nuevamente.");
         }
       } catch (error) {
-        PlayAudio("/src/assets/sounds/Error1.ogg");
+        PlayAudio("/sounds/Error1.ogg");
         setError("Error al registrar. Intente nuevamente.");
       }
     }
@@ -63,32 +63,32 @@ const RegisterPage = () => {
 
   const validateForm = () => {
     if (username.trim() === "") {
-      PlayAudio("/src/assets/sounds/Error1.ogg");
+      PlayAudio("/sounds/Error1.ogg");
       setError("El nombre de usuario no puede estar vacío");
       return false;
     }
 
     if (password.trim() === "") {
-      PlayAudio("/src/assets/sounds/Error1.ogg");
+      PlayAudio("/sounds/Error1.ogg");
       setError("La contraseña no puede estar vacía");
       return false;
     }
 
     if (password.length < 6) {
-      PlayAudio("/src/assets/sounds/Error1.ogg");
+      PlayAudio("/sounds/Error1.ogg");
       setError("La contraseña debe tener al menos 6 caracteres");
       return false;
     }
 
     if (password !== password2) {
-      PlayAudio("/src/assets/sounds/Error1.ogg");
+      PlayAudio("/sounds/Error1.ogg");
       setError("Las contraseñas no coinciden");
       return false;
     }
 
     const userExists = users.some(user => user.username === username);
     if (userExists) {
-      PlayAudio("/src/assets/sounds/Error1.ogg");
+      PlayAudio("/sounds/Error1.ogg");
       setError("El nombre de usuario ya está en uso");
       return false;
     }
@@ -99,12 +99,12 @@ const RegisterPage = () => {
 
   return (
     <div className="bg-auto font-pixelify size-screen bg-gradient">
-      <div className=" bg-[url('/src/assets/images/background.png')] bg-[length:150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
+      <div className=" bg-[url('/images/background.png')] bg-[length:150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
         <div className="bg-gradient-2"></div>
-        <div className="bg-[url('/src/assets/images/home.png')] bg-cover h-[90%] w-[56%] flex flex-col justify-center items-center z-10">
+        <div className="bg-[url('/images/home.png')] bg-cover h-[90%] w-[56%] flex flex-col justify-center items-center z-10">
           <img
             className="w-96"
-            src="/src/assets/images/MonarchQuest.png"
+            src="/images/MonarchQuest.png"
             alt=""
           />
           {error && <div className="text-red-500">{error}</div>}
@@ -169,20 +169,20 @@ const RegisterPage = () => {
               <div className="flex flex-col justify-center items-center gap-3 mt-2">
                 <button
                   type="submit"
-                  className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover leading-4 text-2xl w-52 h-10 text-white flex justify-center items-center"
+                  className="image-cursor bg-[url('/images/button.png')] bg-cover leading-4 text-2xl w-52 h-10 text-white flex justify-center items-center"
                   onMouseEnter={() =>
-                    PlayAudio("/src/assets/sounds/Cursor1.ogg")
+                    PlayAudio("/sounds/Cursor1.ogg")
                   }
                 >
                   Confirmar
                 </button>
                 <Link
                   to={"/login"}
-                  className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover text-center leading-4 text-2xl w-52 h-10 text-white flex justify-center items-center"
+                  className="image-cursor bg-[url('/images/button.png')] bg-cover text-center leading-4 text-2xl w-52 h-10 text-white flex justify-center items-center"
                   onMouseEnter={() =>
-                    PlayAudio("/src/assets/sounds/Cursor1.ogg")
+                    PlayAudio("/sounds/Cursor1.ogg")
                   }
-                  onClick={() => PlayAudio("/src/assets/sounds/Select2.ogg")}
+                  onClick={() => PlayAudio("/sounds/Select2.ogg")}
                 >
                   Inicia Sesión
                 </Link>

@@ -43,7 +43,7 @@ const RankingTable = () => {
 
   async function getSaves() {
     try {
-      return await getWithAuth(`/save/slot/`);
+      return await getWithAuth(`/save/slot`);
     } catch (error) {
       console.error("Error:", error);
       throw error;
@@ -60,31 +60,31 @@ const RankingTable = () => {
             <tr>
               <th className="py-2 px-4">
                 <div className="flex flex-col gap-1 items-center justify-center">
-                  <img src="/src/assets/icons/trophy-icon.png" className="size-8" alt="" />
+                  <img src="/icons/trophy-icon.png" className="size-8" alt="" />
                   <span>Posición</span>
                 </div>
               </th>
               <th className="py-2 px-4">
                 <div className="flex flex-col gap-1 items-center justify-center">
-                  <img src="/src/assets/icons/head-icon.png" className="size-8" alt="" />
+                  <img src="/icons/head-icon.png" className="size-8" alt="" />
                   <span>Usuario</span>
                 </div>
               </th>
               <th className="py-2 px-4">
                 <div className="flex flex-col gap-1 items-center justify-center">
-                  <img src="/src/assets/icons/door-icon.png" className="size-8" alt="" />
+                  <img src="/icons/door-icon.png" className="size-8" alt="" />
                   <span>Fase</span>
                 </div>
               </th>
               <th className="py-2 px-4">
                 <div className="flex flex-col gap-1 items-center justify-center">
-                  <img src="/src/assets/images/skull_01a.png" className="size-8" alt="" />
+                  <img src="/images/skull_01a.png" className="size-8" alt="" />
                   <span>Muertes</span>
                 </div>
               </th>
               <th className="py-2 px-4">
                 <div className="flex flex-col gap-1 items-center justify-center">
-                  <img src="/src/assets/images/coin_05d.png" className="size-8" alt="" />
+                  <img src="/images/coin_05d.png" className="size-8" alt="" />
                   <span>Dinero</span>
                 </div>
               </th>

@@ -1,7 +1,6 @@
 import { useState, useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { login as apiLogin } from "../api/apiRequest";
-import ErrorModal from "../components/ErrorModal";
 import Spinner from "../components/Spinner";
 import PlayAudio from "../utils/PlayAudio";
 import { AuthContext } from "../context/AuthContext";
@@ -17,7 +16,7 @@ const LoginPage = () => {
 
   async function handleSubmit(e) {
     e.preventDefault();
-    PlayAudio("/src/assets/sounds/Select2.ogg");
+    PlayAudio("/sounds/Select2.ogg");
     try {
       setLoading(true);
       const response = await apiLogin("/api/login", { username, password });
@@ -27,7 +26,7 @@ const LoginPage = () => {
         login();
         navigate("/");
       } else {
-        PlayAudio("/src/assets/sounds/Error1.ogg");
+        PlayAudio("/sounds/Error1.ogg");
         setError("Usuario o contraseña incorrectos");
       }
     } catch (error) {
@@ -42,17 +41,12 @@ const LoginPage = () => {
 
   return (
     <div className="bg-auto font-pixelify size-screen bg-gradient">
-      <div className=" bg-[url('/src/assets/images/background.png')] bg-[length:150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
+      <div className="bg-[url('/images/background.png')] bg-[length:150px] bg-animation h-screen w-screen flex flex-col justify-center items-center">
         <div className="bg-gradient-2"></div>
-        <div className="bg-[url('/src/assets/images/home.png')] bg-cover h-[90%] w-[56%] flex flex-col justify-center items-center z-10">
-          <ErrorModal />
-          <img
-            className="w-96"
-            src="src/assets/images/MonarchQuest.png"
-            alt=""
-          />
+        <div className="bg-[url('/images/home.png')] bg-cover h-[90%] w-[56%] flex flex-col justify-center items-center z-10">
+          <img className="w-96" src="/images/MonarchQuest.png" alt="" />
           {error ? (
-            <div className=" text-center text-2xl text-red-700">{error}</div>
+            <div className="text-center text-2xl text-red-700">{error}</div>
           ) : (
             ""
           )}
@@ -99,17 +93,17 @@ const LoginPage = () => {
                   <>
                     <button
                       type="submit"
-                      className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover leading-4 text-2xl w-52 h-10 text-white flex justify-center items-center"
+                      className="image-cursor bg-[url('/images/button.png')] bg-cover leading-4 text-2xl w-52 h-10 text-white flex justify-center items-center"
                       onClick={handleSubmit}
-                      onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
+                      onMouseEnter={() => PlayAudio("/sounds/Cursor1.ogg")}
                     >
                       Inicia Sesión
                     </button>
                     <Link
                       to={"/register"}
-                      className="image-cursor bg-[url('/src/assets/images/button.png')] bg-cover text-center leading-4 text-2xl w-52 h-10 text-white flex justify-center items-center"
-                      onMouseEnter={() => PlayAudio("/src/assets/sounds/Cursor1.ogg")}
-                      onClick={() => PlayAudio("/src/assets/sounds/Select2.ogg")}
+                      className="image-cursor bg-[url('/images/button.png')] bg-cover text-center leading-4 text-2xl w-52 h-10 text-white flex justify-center items-center"
+                      onMouseEnter={() => PlayAudio("/sounds/Cursor1.ogg")}
+                      onClick={() => PlayAudio("/sounds/Select2.ogg")}
                     >
                       Registrate
                     </Link>

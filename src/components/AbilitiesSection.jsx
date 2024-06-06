@@ -13,7 +13,7 @@ const AbilitiesSection = ({
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
 
   function handleSelectedSkill(skill) {
-    PlayAudio("/src/assets/sounds/Cursor2.ogg");
+    PlayAudio("/sounds/Cursor2.ogg");
     setSelectedSkill(skill);
     setSelectedAbility(skill);
   }
@@ -41,7 +41,7 @@ const AbilitiesSection = ({
 
   return (
     <div className="relative">
-      <div className="grid grid-cols-4 gap-3 bg-[url('/src/assets/images/abilities-border.png')] bg-cover p-[1.4rem]">
+      <div className="grid grid-cols-4 gap-3 bg-[url('/images/abilities-border.png')] bg-cover p-[1.4rem]">
         {[...Array(8)].map((_, index) => {
           const ability = abilities[index];
           const isMartillazo = ability && ability.name === "Martillazo";
@@ -50,7 +50,7 @@ const AbilitiesSection = ({
           return (
             <div
               key={index}
-              className={`relative bg-[url('/src/assets/images/inventory-slot-1.png')] bg-cover size-14 flex justify-center items-center ${
+              className={`relative bg-[url('/images/Inventory-slot-1.png')] bg-cover size-14 flex justify-center items-center ${
                 !canUseMartillazo ? "opacity-50" : ""
               }`}
               onMouseEnter={(event) =>

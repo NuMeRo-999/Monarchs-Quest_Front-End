@@ -5,7 +5,7 @@
 
 @font-face {
   font-family: 'm04';
-  src: url('assets/fonts/m04.TTF') format('truetype');
+  src: url('/fonts/m04.TTF') format('truetype');
 }
 
 /* @font-face {
@@ -37,7 +37,7 @@
 }
 
 .image-cursor {
-  cursor: url('/src/assets/icons/hand-cursor.png'), auto;
+  cursor: url('/icons/hand-cursor.png'), auto;
 }
 
 .bg-animation {

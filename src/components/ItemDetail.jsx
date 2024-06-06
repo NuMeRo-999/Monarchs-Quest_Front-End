@@ -40,7 +40,7 @@ const ItemDetail = ({ inventory, index }) => {
         id={inventory[index]?.id}
         onClick={() => {
           setShowModal(true);
-          PlayAudio("/src/assets/sounds/PopupOpen.ogg");
+          PlayAudio("/sounds/PopupOpen.ogg");
         }}
       >
         Detalles
@@ -49,7 +49,7 @@ const ItemDetail = ({ inventory, index }) => {
       {showModal && ItemDetail && (
         <>
           <div className="justify-center items-center flex overflow-x-hidden overflow-y-auto fixed inset-0 z-[51] outline-none focus:outline-none">
-            <div className="relative flex flex-col items-center justify-center bg-[url('/src/assets/images/ItemDetail.png')] bg-cover w-[30rem] h-[36.7rem] gap-5">
+            <div className="relative flex flex-col items-center justify-center bg-[url('/images/ItemDetail.png')] bg-cover w-[30rem] h-[36.7rem] gap-5">
               {loading ? (
                 <Spinner />
               ) : (
@@ -66,7 +66,7 @@ const ItemDetail = ({ inventory, index }) => {
                     <div className="flex justify-between gap-8">
                       <div className="flex items-center gap-2">
                         <img
-                          src="/src/assets/icons/heart-icon.png"
+                          src="/icons/heart-icon.png"
                           alt=""
                           className="size-max"
                         />
@@ -74,7 +74,7 @@ const ItemDetail = ({ inventory, index }) => {
                       </div>
                       <div className="flex items-center gap-2">
                         <img
-                          src="/src/assets/icons/max-health-icon.png"
+                          src="/icons/max-health-icon.png"
                           alt=""
                           className="size-max"
                         />
@@ -84,7 +84,7 @@ const ItemDetail = ({ inventory, index }) => {
                     <div className="flex justify-between gap-8">
                       <div className="flex items-center gap-2">
                         <img
-                          src="/src/assets/icons/attack-icon.png"
+                          src="/icons/attack-icon.png"
                           alt=""
                           className="size-max"
                         />
@@ -92,7 +92,7 @@ const ItemDetail = ({ inventory, index }) => {
                       </div>
                       <div className="flex items-center gap-2">
                         <img
-                          src="/src/assets/icons/critick-icon-2.png"
+                          src="/icons/critick-icon-2.png"
                           alt=""
                           className="size-max"
                         />
@@ -101,7 +101,7 @@ const ItemDetail = ({ inventory, index }) => {
                     </div>
                     <div className="flex items-center gap-2">
                       <img
-                        src="/src/assets/icons/shield-icon.png"
+                        src="/icons/shield-icon.png"
                         alt=""
                         className="size-max"
                       />
