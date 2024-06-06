@@ -8,10 +8,10 @@
   src: url('/fonts/m04.TTF') format('truetype');
 }
 
-/* @font-face {
+@font-face {
   font-family: 'Pixelify Sans';
-  src: url('PixelifySans-Medium.ttf') format('truetype'),
-} */
+  src: url('/fonts/PixelifySans-VariableFont_wght.ttf') format('truetype'),
+}
 
 .silkscreen-regular {
   font-family: "Silkscreen", sans-serif;
@@ -59,7 +59,7 @@
 }
 
 .loader {
-  animation: spin 2s steps(1) infinite;
+  animation: spin 1.5s steps(1) infinite;
 }
 
 .spinner-block {
