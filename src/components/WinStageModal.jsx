@@ -66,7 +66,7 @@ const WinStageModal = ({ setSaves, setEnemies, hasShownModalRef, setInventory })
             items.map((item, index) => (
               <div
                 key={index}
-                className="bg-[url('/images/inventory-slot-1.png')] bg-cover size-20 flex justify-center items-center relative"
+                className="bg-[url('/images/Inventory-slot-1.png')] bg-cover size-20 flex justify-center items-center relative"
               >
                 <img
                   src={`${BASE_URL}/img/${item.imageFilename}`}

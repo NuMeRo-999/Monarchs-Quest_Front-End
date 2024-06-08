@@ -10,7 +10,7 @@ export async function getWithAuth(url) {
         const response = await fetch(`${BASE_URL}${url}`, {
             method: 'GET',
             headers: {
-                'Authorization': `Bearer ${user.token}`
+                'Authorization': `Bearer ${user.token}`,
             }
         });
 
