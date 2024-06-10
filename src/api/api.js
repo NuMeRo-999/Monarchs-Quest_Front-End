@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://127.0.0.1:8080';
+export const BASE_URL = 'http://3.234.169.215:8000';
 
 export async function getWithAuth(url) {
     try {
