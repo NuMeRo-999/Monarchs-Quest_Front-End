@@ -38,5 +38,9 @@ docker run --rm -d --name front-end-container -p 3030:80/tcp monarchs-quest_fron
   ```bash
   docker stop front-end-container
   ```
+
+# Advertencia
+Para despliegues locales y en producción, asegúrate de configurar la variable `BASE_URL` de los fetch en el archivo `api.js` dentro de la carpeta `src/api`. Ajusta la URL para apuntar al backend correcto según el entorno de despliegue.
+
 # Contribuciones
 Las contribuciones son bienvenidas. Si deseas contribuir, por favor, crea un fork del repositorio y envía un pull request.
